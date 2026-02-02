@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-sans: var(--font-work-sans), system-ui, sans-serif;
+    --font-display: var(--font-oswald), impact, sans-serif;
+  }
+
+  * {
+    @apply border-brand-black;
+  }
+
+  body {
+    @apply bg-brand-cream text-brand-black antialiased;
+    font-family: var(--font-sans);
+    letter-spacing: -0.01em;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes border-dance {
+    0%, 100% {
+      border-radius: 30px 10px 30px 10px;
+    }
+    50% {
+      border-radius: 10px 30px 10px 30px;
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% {
+      box-shadow: 0 0 15px rgba(0, 217, 163, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 25px rgba(0, 255, 136, 0.5);
+    }
+  }
+
+  @keyframes glow-pulse-pink {
+    0%, 100% {
+      box-shadow: 0 0 15px rgba(255, 144, 194, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 25px rgba(255, 182, 217, 0.5);
+    }
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .heading-xl {
+    @apply text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+  }
+
+  .heading-lg {
+    @apply text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+  }
+
+  .heading-md {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+  }
+
+  .heading-sm {
+    @apply text-3xl md:text-4xl font-bold tracking-tight;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+  }
+
+  .btn-primary {
+    @apply px-8 py-4 bg-brand-green text-brand-white font-bold rounded-full hover:bg-brand-neon transition-all duration-300 uppercase tracking-wide shadow-lg hover:shadow-xl;
+  }
+
+  .btn-secondary {
+    @apply px-8 py-4 border-2 border-brand-black text-brand-black font-bold rounded-full hover:bg-brand-black hover:text-brand-white transition-all duration-300 uppercase tracking-wide;
+  }
+
+  .btn-pink {
+    @apply px-8 py-4 bg-brand-rose text-brand-white font-bold rounded-full hover:bg-brand-pink transition-all duration-300 uppercase tracking-wide shadow-lg hover:shadow-xl;
+  }
+
+  .glow-neon {
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+
+  .glow-pink {
+    box-shadow: 0 0 15px rgba(255, 16, 240, 0.2);
+    animation: glow-pulse-pink 3s ease-in-out infinite;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

@@ -78,7 +78,7 @@ export function Community() {
               </div>
               
               <p className="text-lg text-brand-black/80 mb-6 italic leading-relaxed">
-                "{testimonial.quote}"
+                &ldquo;{testimonial.quote}&rdquo;
               </p>
               
               <div className="border-t border-brand-black/10 pt-4">

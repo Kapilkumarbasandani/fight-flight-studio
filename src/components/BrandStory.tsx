@@ -28,7 +28,7 @@ export function BrandStory() {
 
         {/* Main Story */}
         <div className="max-w-4xl mx-auto space-y-6 text-lg md:text-xl text-brand-black/80 mb-20">
-          <p>Most of us spend our lives being told what our bodies can't do.</p>
+          <p>Most of us spend our lives being told what our bodies can&apos;t do.</p>
           
           <p>Too slow. Too weak. Not flexible enough. Not athletic enough.</p>
           
@@ -36,18 +36,18 @@ export function BrandStory() {
           
           <p>
             At Fight & Flight Studio, we believe movement is your birthright — not something you have to earn. 
-            Whether you're throwing your first jab or hanging upside down for the first time, you belong here.
+            Whether you&apos;re throwing your first jab or hanging upside down for the first time, you belong here.
           </p>
           
           <p>
-            This isn't about being the best. It's about becoming <em className="text-brand-rose font-semibold">more</em> — 
+            This isn&apos;t about being the best. It&apos;s about becoming <em className="text-brand-rose font-semibold">more</em> — 
             more confident, more capable, more yourself.
           </p>
           
-          <p>We don't train warriors. We train humans who want to feel like superheroes.</p>
+          <p>We don&apos;t train warriors. We train humans who want to feel like superheroes.</p>
           
           <p className="text-brand-black font-bold text-2xl">
-            And here's the secret: <span className="text-brand-rose">you already are one.</span> You just need the right place to prove it.
+            And here&apos;s the secret: <span className="text-brand-rose">you already are one.</span> You just need the right place to prove it.
           </p>
         </div>
 

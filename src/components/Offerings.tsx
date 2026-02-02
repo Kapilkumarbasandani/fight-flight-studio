@@ -28,11 +28,11 @@ export function Offerings() {
               </p>
               
               <p className="text-lg text-brand-black/70 mb-6">
-                Muay Thai isn't about anger or aggression. It's about control, focus, and mastery.
+                Muay Thai isn&apos;t about anger or aggression. It&apos;s about control, focus, and mastery.
               </p>
               
               <p className="text-lg text-brand-black/70 mb-8">
-                You'll learn punches, elbows, knees, and kicks — not to hurt anyone, but to discover 
+                You&apos;ll learn punches, elbows, knees, and kicks — not to hurt anyone, but to discover 
                 what your body can do when it moves with intention.
               </p>
 
@@ -61,7 +61,7 @@ export function Offerings() {
 
               {/* Who It's For */}
               <p className="text-brand-black/60 mb-8 italic">
-                <strong className="text-brand-green">Who It's For:</strong> Anyone ready to feel strong, 
+                <strong className="text-brand-green">Who It&apos;s For:</strong> Anyone ready to feel strong, 
                 focused, and fearless — no experience required.
               </p>
 
@@ -116,11 +116,11 @@ export function Offerings() {
               </p>
               
               <p className="text-lg text-brand-black/70 mb-6">
-                Aerial dance is where strength meets art, where you stop asking "can I?" and start asking "how high?"
+                Aerial dance is where strength meets art, where you stop asking &ldquo;can I?&rdquo; and start asking &ldquo;how high?&rdquo;
               </p>
               
               <p className="text-lg text-brand-black/70 mb-8">
-                From silks to lyra, pole to hammock, you'll build muscles you didn't know you had and move 
+                From silks to lyra, pole to hammock, you&apos;ll build muscles you didn&apos;t know you had and move 
                 in ways that feel like flying.
               </p>
 
@@ -157,7 +157,7 @@ export function Offerings() {
 
               {/* Who It's For */}
               <p className="text-brand-black/60 mb-8 italic">
-                <strong className="text-brand-rose">Who It's For:</strong> Anyone who's ever wanted to 
+                <strong className="text-brand-rose">Who It&apos;s For:</strong> Anyone who&apos;s ever wanted to 
                 feel weightless, powerful, and free.
               </p>
 

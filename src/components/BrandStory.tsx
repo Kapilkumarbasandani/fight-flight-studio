@@ -19,8 +19,17 @@ export function BrandStory() {
   ]
 
   return (
-    <section className="section-padding bg-brand-white">
-      <div className="container-custom">
+    <section className="section-padding bg-brand-white relative overflow-hidden">
+      {/* Decorative Background Image */}
+      <div className="absolute inset-0 opacity-5">
+        <img 
+          src="/Images/WhatsApp Image 2026-02-02 at 7.11.38 PM.jpeg"
+          alt="Background"
+          className="w-full h-full object-cover"
+        />
+      </div>
+      
+      <div className="container-custom relative z-10">
         {/* Section Headline */}
         <h2 className="heading-lg text-center mb-16 text-brand-black">
           You Don't Need Permission to Be <span className="text-brand-green">Powerful</span>

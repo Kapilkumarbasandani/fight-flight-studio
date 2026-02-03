@@ -21,7 +21,7 @@ export function Hero() {
           loop
           muted
           playsInline
-          className="w-full h-full object-cover scale-105 opacity-75 brightness-110"
+          className="w-full h-full object-cover scale-105 opacity-85 brightness-125"
         >
           <source src="/fight-flight-studio/videos/Yoga 1.mp4" type="video/mp4" />
         </video>

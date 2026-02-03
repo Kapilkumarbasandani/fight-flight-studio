@@ -75,7 +75,7 @@ export function Offerings() {
             <div className="order-1 lg:order-2">
               <div className="aspect-[4/5] border-2 border-brand-green/40 overflow-hidden relative group shadow-[0_0_30px_rgba(0,217,163,0.2)] rounded-[40px_10px_40px_10px] transform rotate-1 hover:rotate-0 hover:shadow-[0_0_50px_rgba(0,217,163,0.4)] transition-all duration-700 hover:scale-105">
                 <img
-                  src="/Images/real_girldoingboxing.jpeg"
+                  src="/fight-flight-studio/Images/real_girldoingboxing.jpeg"
                   alt="Muay Thai Training"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 brightness-105 group-hover:brightness-110"
                 />
@@ -92,7 +92,7 @@ export function Offerings() {
             <div>
               <div className="aspect-[4/5] border-2 border-brand-rose/40 overflow-hidden relative group shadow-[0_0_30px_rgba(255,144,194,0.2)] rounded-[10px_40px_10px_40px] transform -rotate-1 hover:rotate-0 hover:shadow-[0_0_50px_rgba(255,144,194,0.4)] transition-all duration-700 hover:scale-105">
                 <img
-                  src="/Images/realgirlarieldanceimage.jpeg"
+                  src="/fight-flight-studio/Images/realgirlarieldanceimage.jpeg"
                   alt="Aerial Dance"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 brightness-105 group-hover:brightness-110"
                 />

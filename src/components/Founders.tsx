@@ -21,7 +21,7 @@ export function Founders() {
             <div className="order-2 lg:order-1">
               <div className="aspect-[3/4] border-2 border-brand-green/40 overflow-hidden relative group rounded-[50px_10px_50px_10px] transform rotate-2 hover:rotate-0 shadow-[0_0_30px_rgba(0,217,163,0.15)] hover:shadow-[0_0_50px_rgba(0,217,163,0.3)] transition-all duration-700 hover:scale-105">
                 <img
-                  src="/Images/real_girldoingboxing.jpeg"
+                  src="/fight-flight-studio/Images/real_girldoingboxing.jpeg"
                   alt="Shaleena Saraogi - Muay Thai Lead"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 brightness-105 group-hover:brightness-110"
                 />
@@ -77,7 +77,7 @@ export function Founders() {
             <div>
               <div className="aspect-[3/4] border-2 border-brand-rose/40 overflow-hidden relative group rounded-[10px_50px_10px_50px] transform -rotate-2 hover:rotate-0 shadow-[0_0_30px_rgba(255,144,194,0.15)] hover:shadow-[0_0_50px_rgba(255,144,194,0.3)] transition-all duration-700 hover:scale-105">
                 <img
-                  src="/Images/realgirlarieldanceimage.jpeg"
+                  src="/fight-flight-studio/Images/realgirlarieldanceimage.jpeg"
                   alt="Tinsley Nulph - Aerial Dance Lead"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 brightness-105 group-hover:brightness-110"
                 />

@@ -23,7 +23,7 @@ export function BrandStory() {
       {/* Decorative Background Image */}
       <div className="absolute inset-0 opacity-10">
         <img 
-          src="/Images/WhatsApp Image 2026-02-02 at 7.11.37 PM.jpeg"
+          src="/fight-flight-studio/Images/WhatsApp Image 2026-02-02 at 7.11.37 PM.jpeg"
           alt="Background"
           className="w-full h-full object-cover"
         />

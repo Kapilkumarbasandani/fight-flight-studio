@@ -6,9 +6,9 @@ export function Footer() {
 
   return (
     <footer className="bg-brand-black border-t border-brand-white/10">
-      <div className="container-custom py-16">
+      <div className="container-custom py-8">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div>
             <div className="text-2xl font-bold mb-4">

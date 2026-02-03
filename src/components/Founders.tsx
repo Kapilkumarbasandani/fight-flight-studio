@@ -1,6 +1,6 @@
 export function Founders() {
   return (
-    <section className="section-padding bg-gradient-to-b from-brand-cream to-brand-white relative overflow-hidden">
+    <section id="founders" className="section-padding bg-gradient-to-b from-brand-cream to-brand-white relative overflow-hidden">
       {/* Decorative Elements */}
       <div className="absolute top-20 left-10 w-96 h-96 bg-brand-green/5 rounded-full blur-3xl" style={{ animation: 'float 8s ease-in-out infinite' }} />
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-brand-rose/5 rounded-full blur-3xl" style={{ animation: 'float 10s ease-in-out infinite', animationDelay: '1s' }} />

@@ -13,7 +13,7 @@
   }
 
   body {
-    @apply bg-brand-cream text-brand-black antialiased;
+    @apply bg-brand-black text-brand-white antialiased;
     font-family: var(--font-sans);
     letter-spacing: -0.01em;
   }
@@ -87,6 +87,7 @@
     font-family: var(--font-display);
     text-transform: uppercase;
     letter-spacing: -0.03em;
+    text-shadow: 0 0 10px rgba(0, 217, 163, 0.1), 0 0 20px rgba(255, 20, 147, 0.08);
   }
 
   .heading-lg {
@@ -94,6 +95,8 @@
     font-family: var(--font-display);
     text-transform: uppercase;
     letter-spacing: -0.03em;
+    text-shadow: 0 0 8px rgba(0, 217, 163, 0.1), 0 0 15px rgba(255, 20, 147, 0.06);
+    animation: float 5s ease-in-out infinite;
   }
 
   .heading-md {
@@ -101,6 +104,7 @@
     font-family: var(--font-display);
     text-transform: uppercase;
     letter-spacing: -0.02em;
+    text-shadow: 0 0 8px rgba(0, 217, 163, 0.1);
   }
 
   .heading-sm {
@@ -108,18 +112,40 @@
     font-family: var(--font-display);
     text-transform: uppercase;
     letter-spacing: -0.02em;
+    text-shadow: 0 0 6px rgba(255, 20, 147, 0.15);
   }
 
   .btn-primary {
     @apply px-8 py-4 bg-brand-green text-brand-white font-bold rounded-full hover:bg-brand-neon transition-all duration-300 uppercase tracking-wide shadow-lg hover:shadow-xl;
+    transform: translateY(0);
+    box-shadow: 0 4px 20px rgba(0, 217, 163, 0.3);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 30px rgba(0, 255, 136, 0.5);
   }
 
   .btn-secondary {
-    @apply px-8 py-4 border-2 border-brand-black text-brand-black font-bold rounded-full hover:bg-brand-black hover:text-brand-white transition-all duration-300 uppercase tracking-wide;
+    @apply px-8 py-4 border-2 border-brand-white text-brand-white font-bold rounded-full hover:bg-brand-white hover:text-brand-black transition-all duration-300 uppercase tracking-wide;
+    transform: translateY(0);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+  }
+
+  .btn-secondary:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
   }
 
   .btn-pink {
     @apply px-8 py-4 bg-brand-rose text-brand-white font-bold rounded-full hover:bg-brand-pink transition-all duration-300 uppercase tracking-wide shadow-lg hover:shadow-xl;
+    transform: translateY(0);
+    box-shadow: 0 4px 20px rgba(255, 20, 147, 0.3);
+  }
+
+  .btn-pink:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 30px rgba(255, 105, 180, 0.5);
   }
 
   .glow-neon {
@@ -140,5 +166,27 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .text-gradient-green {
+    background: linear-gradient(135deg, #00D9A3 0%, #00FF88 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-pink {
+    background: linear-gradient(135deg, #FF1493 0%, #FF69B4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-glow-green {
+    text-shadow: 0 0 10px rgba(0, 217, 163, 0.3), 0 0 20px rgba(0, 255, 136, 0.2);
+  }
+
+  .text-glow-pink {
+    text-shadow: 0 0 10px rgba(255, 20, 147, 0.3), 0 0 20px rgba(255, 105, 180, 0.2);
   }
 }

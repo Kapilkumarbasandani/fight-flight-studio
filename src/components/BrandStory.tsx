@@ -19,11 +19,11 @@ export function BrandStory() {
   ]
 
   return (
-    <section className="section-padding bg-brand-white relative overflow-hidden">
+    <section className="section-padding bg-brand-black relative overflow-hidden">
       {/* Decorative Background Image */}
-      <div className="absolute inset-0 opacity-5">
+      <div className="absolute inset-0 opacity-10">
         <img 
-          src="/Images/WhatsApp Image 2026-02-02 at 7.11.38 PM.jpeg"
+          src="/Images/WhatsApp Image 2026-02-02 at 7.11.37 PM.jpeg"
           alt="Background"
           className="w-full h-full object-cover"
         />
@@ -31,12 +31,12 @@ export function BrandStory() {
       
       <div className="container-custom relative z-10">
         {/* Section Headline */}
-        <h2 className="heading-lg text-center mb-16 text-brand-black">
-          You Don't Need Permission to Be <span className="text-brand-green">Powerful</span>
+        <h2 className="heading-lg text-center mb-16 text-brand-white">
+          You Don't Need Permission to Be <span className="text-gradient-green">Powerful</span>
         </h2>
 
         {/* Main Story */}
-        <div className="max-w-4xl mx-auto space-y-6 text-lg md:text-xl text-brand-black/80 mb-20">
+        <div className="max-w-4xl mx-auto space-y-6 text-lg md:text-xl text-brand-white/80 mb-20">
           <p>Most of us spend our lives being told what our bodies can&apos;t do.</p>
           
           <p>Too slow. Too weak. Not flexible enough. Not athletic enough.</p>
@@ -49,14 +49,14 @@ export function BrandStory() {
           </p>
           
           <p>
-            This isn&apos;t about being the best. It&apos;s about becoming <em className="text-brand-rose font-semibold">more</em> — 
+            This isn&apos;t about being the best. It&apos;s about becoming <em className="text-gradient-pink font-semibold not-italic">more</em> — 
             more confident, more capable, more yourself.
           </p>
           
           <p>We don&apos;t train warriors. We train humans who want to feel like superheroes.</p>
           
-          <p className="text-brand-black font-bold text-2xl">
-            And here&apos;s the secret: <span className="text-brand-rose">you already are one.</span> You just need the right place to prove it.
+          <p className="text-brand-white font-bold text-2xl">
+            And here's the secret: <span className="text-gradient-pink">you already are one.</span> You just need the right place to prove it.
           </p>
         </div>
 
@@ -65,16 +65,16 @@ export function BrandStory() {
           {pillars.map((pillar, index) => (
             <div
               key={index}
-              className="p-6 border border-brand-black/10 hover:border-brand-green/50 transition-all duration-500 group rounded-3xl hover:rounded-[40px_10px_40px_10px] bg-gradient-to-br from-brand-cream to-transparent shadow-sm hover:shadow-xl hover:-translate-y-2 hover:scale-105 relative overflow-hidden"
+              className="p-6 border border-brand-white/10 hover:border-brand-green/50 transition-all duration-500 group rounded-3xl hover:rounded-[40px_10px_40px_10px] bg-gradient-to-br from-brand-black/50 to-transparent shadow-sm hover:shadow-xl hover:-translate-y-2 hover:scale-105 relative overflow-hidden"
               style={{ animation: `float ${4 + index}s ease-in-out infinite` }}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-brand-green/0 via-brand-pink/5 to-brand-green/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ animation: 'shimmer 3s infinite' }} />
               <div className="relative z-10">
                 <div className="w-12 h-1 bg-brand-green mb-4 group-hover:w-full transition-all duration-500 rounded-full group-hover:bg-gradient-to-r group-hover:from-brand-green group-hover:to-brand-rose" />
-              <h3 className="text-xl font-bold mb-3 text-brand-black group-hover:text-brand-green transition-colors">
+              <h3 className="text-xl font-bold mb-3 text-brand-white group-hover:text-gradient-green transition-all duration-300">
                 {pillar.title}
               </h3>
-              <p className="text-brand-black/70">{pillar.description}</p>
+              <p className="text-brand-white/70">{pillar.description}</p>
               </div>
             </div>
           ))}

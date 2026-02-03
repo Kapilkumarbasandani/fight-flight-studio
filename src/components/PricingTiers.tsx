@@ -87,78 +87,75 @@ export function PricingTiers() {
   ]
 
   return (
-    <section className="section-padding bg-brand-black">
-      <div className="container-custom">
-        {/* Header */}
-        <div className="text-center mb-20">
+    <section id="pricing" className="pt-8 pb-20 bg-brand-cream relative overflow-hidden">
+      <div className="absolute top-20 left-10 w-32 h-32 bg-brand-green/8 rounded-full blur-3xl animate-float" />
+      <div className="absolute bottom-40 right-20 w-40 h-40 bg-brand-neon/6 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+      
+      <div className="container-custom relative z-10">
+        <div className="text-center mb-16">
           <h1 className="heading-lg mb-6">
-            Choose Your <span className="text-brand-pink">Origin Story</span>
+            Choose Your <span className="bg-gradient-to-r from-brand-green to-brand-neon bg-clip-text text-transparent">Origin Story</span>
           </h1>
-          <p className="text-xl text-brand-white/70 max-w-2xl mx-auto">
+          <p className="text-xl text-brand-black/70 max-w-2xl mx-auto">
             Every superhero starts somewhere. Pick the path that fits your journey.
           </p>
         </div>
 
-        {/* Pricing Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {tiers.map((tier) => (
             <div
               key={tier.id}
               className={`relative p-8 border backdrop-blur-sm rounded-[30px_10px_30px_10px] ${
                 tier.popular
-                  ? 'border-brand-neon/50 bg-gradient-to-br from-brand-neon/5 to-brand-black shadow-[0_0_30px_rgba(0,255,65,0.15)] scale-105 lg:scale-110'
+                  ? 'border-brand-green/40 bg-white shadow-[0_8px_30px_rgba(0,255,136,0.15)] scale-105 lg:scale-110'
                   : tier.color === 'pink'
-                  ? 'border-brand-pink/20 hover:border-brand-pink/40 bg-gradient-to-br from-brand-pink/3 to-brand-black hover:shadow-[0_0_20px_rgba(255,16,240,0.1)]'
+                  ? 'border-brand-black/15 hover:border-brand-black/25 bg-white/90 hover:shadow-[0_8px_25px_rgba(0,0,0,0.1)]'
                   : tier.color === 'neon'
-                  ? 'border-brand-neon/20 hover:border-brand-neon/40 bg-gradient-to-br from-brand-neon/3 to-brand-black hover:shadow-[0_0_20px_rgba(0,255,65,0.1)]'
-                  : 'border-brand-white/15 hover:border-brand-white/30 bg-gradient-to-br from-brand-white/2 to-brand-black hover:shadow-[0_0_20px_rgba(255,255,255,0.05)]'
+                  ? 'border-brand-green/25 hover:border-brand-green/40 bg-white/90 hover:shadow-[0_8px_25px_rgba(0,255,136,0.12)]'
+                  : 'border-brand-black/10 hover:border-brand-black/20 bg-white/80 hover:shadow-[0_8px_20px_rgba(0,0,0,0.08)]'
               } transition-all duration-500 flex flex-col hover:scale-102 transform-gpu hover:rounded-[10px_40px_10px_40px]`}
               style={{
                 transformStyle: 'preserve-3d',
               }}
             >
-              {/* Badge */}
               {tier.badge && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-brand-neon text-brand-black text-xs font-bold uppercase tracking-wide rounded-full">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-brand-green text-white text-xs font-bold uppercase tracking-wide rounded-full shadow-lg">
                   ⭐ {tier.badge}
                 </div>
               )}
 
-              {/* Header */}
               <div className="mb-6">
                 <div className="text-4xl mb-2">{tier.emoji}</div>
-                <h3 className="text-2xl font-bold text-brand-white mb-2">
+                <h3 className="text-2xl font-bold text-brand-black mb-2">
                   {tier.name}
                 </h3>
                 <div className="flex items-baseline gap-2 mb-2">
-                  <span className="text-4xl font-bold text-brand-white">{tier.price}</span>
+                  <span className="text-4xl font-bold text-brand-black">{tier.price}</span>
                 </div>
-                <p className="text-sm text-brand-white/60">
+                <p className="text-sm text-brand-black/60">
                   {tier.credits} Credit{tier.credits > 1 ? 's' : ''} • Valid for {tier.validity}
                 </p>
               </div>
 
-              {/* Description */}
-              <p className="text-brand-white/70 mb-6">
-                <span className="font-semibold text-brand-white">Perfect for:</span> {tier.description}
+              <p className="text-brand-black/70 mb-6">
+                <span className="font-semibold text-brand-black">Perfect for:</span> {tier.description}
               </p>
 
-              {/* Features */}
               <div className="flex-grow mb-6">
-                <p className="text-sm font-bold text-brand-white mb-3 uppercase tracking-wide">
+                <p className="text-sm font-bold text-brand-black mb-3 uppercase tracking-wide">
                   What You Get:
                 </p>
                 <ul className="space-y-3">
                   {tier.features.map((feature, index) => (
-                    <li key={index} className="flex items-start gap-2 text-sm text-brand-white/70">
+                    <li key={index} className="flex items-start gap-2 text-sm text-brand-black/70">
                       <Check
                         size={16}
                         className={`mt-0.5 flex-shrink-0 ${
                           tier.color === 'pink'
-                            ? 'text-brand-pink'
+                            ? 'text-brand-green/80'
                             : tier.color === 'neon'
-                            ? 'text-brand-neon'
-                            : 'text-brand-white/50'
+                            ? 'text-brand-green'
+                            : 'text-brand-black/50'
                         }`}
                       />
                       {feature}
@@ -167,20 +164,18 @@ export function PricingTiers() {
                 </ul>
               </div>
 
-              {/* Savings */}
               {tier.savings && (
-                <p className="text-sm font-bold text-brand-neon mb-4">{tier.savings}</p>
+                <p className="text-sm font-bold text-brand-green mb-4">{tier.savings}</p>
               )}
 
-              {/* CTA */}
               <Link
                 href={`/book?tier=${tier.id}`}
                 className={`block text-center py-4 px-6 font-bold uppercase tracking-wide transition-all duration-300 rounded-full ${
                   tier.color === 'pink'
-                    ? 'bg-brand-pink text-brand-white hover:bg-opacity-90 glow-pink'
+                    ? 'bg-brand-black text-white hover:bg-brand-black/90 shadow-md hover:shadow-lg'
                     : tier.color === 'neon'
-                    ? 'bg-brand-neon text-brand-black hover:bg-opacity-90 glow-neon'
-                    : 'border-2 border-brand-white text-brand-white hover:bg-brand-white hover:text-brand-black'
+                    ? 'bg-brand-green text-white hover:bg-opacity-90 shadow-md hover:shadow-lg'
+                    : 'border-2 border-brand-black text-brand-black hover:bg-brand-black hover:text-white'
                 }`}
               >
                 {tier.cta}
@@ -189,42 +184,41 @@ export function PricingTiers() {
           ))}
         </div>
 
-        {/* Footer Info */}
         <div className="max-w-4xl mx-auto">
-          <div className="bg-brand-white/5 border border-brand-white/10 p-8 mb-8 rounded-3xl">
-            <h3 className="text-xl font-bold text-brand-white mb-4">All packages include:</h3>
-            <ul className="grid md:grid-cols-2 gap-3 text-brand-white/70">
+          <div className="bg-white/80 border border-brand-black/10 p-8 mb-8 rounded-[30px_10px_30px_10px] shadow-md">
+            <h3 className="text-xl font-bold text-brand-black mb-4">All packages include:</h3>
+            <ul className="grid md:grid-cols-2 gap-3 text-brand-black/70">
               <li className="flex items-start gap-2">
-                <Check size={20} className="text-brand-neon flex-shrink-0 mt-0.5" />
+                <Check size={20} className="text-brand-green flex-shrink-0 mt-0.5" />
                 No hidden fees
               </li>
               <li className="flex items-start gap-2">
-                <Check size={20} className="text-brand-neon flex-shrink-0 mt-0.5" />
+                <Check size={20} className="text-brand-green flex-shrink-0 mt-0.5" />
                 Pause credits if you travel (up to 2 weeks)
               </li>
               <li className="flex items-start gap-2">
-                <Check size={20} className="text-brand-neon flex-shrink-0 mt-0.5" />
+                <Check size={20} className="text-brand-green flex-shrink-0 mt-0.5" />
                 Cancel classes up to 12 hours in advance for full refund
               </li>
               <li className="flex items-start gap-2">
-                <Check size={20} className="text-brand-neon flex-shrink-0 mt-0.5" />
+                <Check size={20} className="text-brand-green flex-shrink-0 mt-0.5" />
                 Mix and match disciplines however you want
               </li>
             </ul>
           </div>
 
           <div className="text-center space-y-4">
-            <p className="text-brand-white/70">
-              <span className="text-brand-pink font-bold">💡 Remember:</span> Aerial classes require 2 credits. 
+            <p className="text-brand-black/70">
+              <span className="text-brand-green font-bold">💡 Remember:</span> Aerial classes require 2 credits. 
               Muay Thai classes require 1 credit.
             </p>
-            <p className="text-brand-white/60">
+            <p className="text-brand-black/60">
               <strong>Questions?</strong> Email us at{' '}
-              <a href="mailto:hello@fightandflightstudio.com" className="text-brand-neon hover:underline">
+              <a href="mailto:hello@fightandflightstudio.com" className="text-brand-green hover:underline">
                 hello@fightandflightstudio.com
               </a>{' '}
               or WhatsApp{' '}
-              <a href="https://wa.me/66XXXXXXXX" className="text-brand-neon hover:underline">
+              <a href="https://wa.me/66XXXXXXXX" className="text-brand-green hover:underline">
                 +66 XX XXX XXXX
               </a>
             </p>

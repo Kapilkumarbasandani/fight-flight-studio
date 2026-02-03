@@ -2,33 +2,60 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const pathname = usePathname()
+  
+  const isPricingPage = pathname === '/pricing'
+  const isClassesPage = pathname === '/classes'
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+      const currentScrollY = window.scrollY
+      
+      if (currentScrollY > 50) {
+        setIsScrolled(true)
+        // Show header when scrolling up, hide when scrolling down
+        setIsVisible(currentScrollY < lastScrollY)
+      } else {
+        setIsScrolled(false)
+        setIsVisible(true)
+      }
+      
+      setLastScrollY(currentScrollY)
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [lastScrollY])
 
   const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/classes', label: 'Classes' },
-    { href: '/pricing', label: 'Pricing' },
-    { href: '/our-story', label: 'Our Story' },
-    { href: '/founders', label: 'Founders' },
+    { href: '#home', label: 'HOME' },
+    { href: '#founders', label: 'FOUNDERS' },
+    { href: '#offerings', label: 'OFFERINGS' },
+    { href: '#pricing', label: 'PRICING' },
+    { href: '#schedule', label: 'SCHEDULE' },
   ]
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault()
+    const element = document.querySelector(href)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+      setIsMobileMenuOpen(false)
+    }
+  }
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-brand-black/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
-      }`}
+        isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
+      } ${isPricingPage || isClassesPage ? 'bg-brand-black/95 backdrop-blur-sm shadow-lg' : isScrolled ? 'bg-brand-black/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'}`}
     >
       <div className="container-custom">
         <div className="flex items-center justify-between h-20">
@@ -44,20 +71,22 @@ export function Navigation() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <Link
+              <a
                 key={link.href}
                 href={link.href}
-                className="text-brand-white hover:text-brand-neon transition-colors duration-300 font-medium uppercase text-sm tracking-wide"
+                onClick={(e) => handleClick(e, link.href)}
+                className="text-brand-white hover:text-brand-green transition-colors duration-300 font-bold uppercase text-sm tracking-wider cursor-pointer"
               >
                 {link.label}
-              </Link>
+              </a>
             ))}
-            <Link href="/dashboard" className="btn-primary text-sm py-3 px-6">
-              Dashboard
-            </Link>
-            <Link href="/book" className="btn-secondary text-sm py-3 px-6 text-brand-white hover:text-brand-white">
-              Book Now
-            </Link>
+            <a
+              href="#pricing"
+              onClick={(e) => handleClick(e, '#pricing')}
+              className="btn-primary text-sm py-3 px-6 cursor-pointer"
+            >
+              JOIN NOW
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -71,31 +100,24 @@ export function Navigation() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-6 space-y-4 animate-fade-in">
+          <div className="md:hidden py-6 space-y-4 animate-fade-in bg-brand-black/95 backdrop-blur-sm rounded-b-3xl">
             {navLinks.map((link) => (
-              <Link
+              <a
                 key={link.href}
                 href={link.href}
-                className="block text-brand-white hover:text-brand-neon transition-colors duration-300 font-medium uppercase text-sm tracking-wide py-2"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => handleClick(e, link.href)}
+                className="block text-brand-white hover:text-brand-green transition-colors duration-300 font-bold uppercase text-sm tracking-wider py-2 cursor-pointer"
               >
                 {link.label}
-              </Link>
+              </a>
             ))}
-            <Link
-              href="/dashboard"
-              className="block btn-primary text-sm py-3 px-6 text-center"
-              onClick={() => setIsMobileMenuOpen(false)}
+            <a
+              href="#pricing"
+              onClick={(e) => handleClick(e, '#pricing')}
+              className="block btn-primary text-sm py-3 px-6 text-center cursor-pointer"
             >
-              Dashboard
-            </Link>
-            <Link
-              href="/book"
-              className="block btn-secondary text-sm py-3 px-6 text-center"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Book Now
-            </Link>
+              JOIN NOW
+            </a>
           </div>
         )}
       </div>

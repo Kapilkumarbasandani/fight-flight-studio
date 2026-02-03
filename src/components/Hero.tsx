@@ -12,25 +12,25 @@ export function Hero() {
   }, [])
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-black">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-black">
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-black/50 via-brand-black/70 to-brand-cream z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-black/50 via-brand-black/60 to-brand-black z-10" />
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="w-full h-full object-cover scale-105 opacity-60"
+          className="w-full h-full object-cover scale-105 opacity-75 brightness-110"
         >
-          <source src="/videos/Female Boxing Video.mp4" type="video/mp4" />
+          <source src="/videos/Yoga 1.mp4" type="video/mp4" />
         </video>
         {/* Fallback gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-brand-cream via-brand-pink/10 to-brand-green/10 -z-10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-brand-black via-brand-green/10 to-brand-black -z-10" />
       </div>
 
       {/* Decorative Elements */}
-      <div className="absolute top-1/4 left-10 w-96 h-96 bg-brand-green/10 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute top-1/4 left-10 w-96 h-96 bg-brand-green/15 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-brand-rose/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
 
       {/* Content */}
@@ -42,20 +42,20 @@ export function Hero() {
         >
           {/* Main Headline */}
           <h1 className="heading-xl mb-6">
-            <span className="text-brand-green">Fight.</span>{' '}
-            <span className="text-brand-rose">Fly.</span>{' '}
-            <span className="text-brand-cream">Become.</span>
+            <span className="text-gradient-green">Fight.</span>{' '}
+            <span className="text-gradient-pink">Fly.</span>{' '}
+            <span className="text-brand-white/80">Become.</span>
           </h1>
 
           {/* Subheadline */}
-          <p className="text-xl md:text-2xl lg:text-3xl text-brand-cream/90 max-w-4xl mx-auto mb-8 leading-relaxed">
+          <p className="text-xl md:text-2xl lg:text-3xl text-brand-white/70 max-w-4xl mx-auto mb-8 leading-relaxed transition-all duration-500 hover:text-brand-white/85">
             Your body is capable of incredible things. We'll show you how to unlock them —{' '}
-            <span className="text-brand-green font-semibold">through the power of Muay Thai</span> and{' '}
-            <span className="text-brand-rose font-semibold">the art of aerial dance</span>.
+            <span className="text-gradient-green font-semibold">through the power of Muay Thai</span> and{' '}
+            <span className="text-gradient-pink font-semibold">the art of aerial dance</span>.
           </p>
 
           {/* Supporting Copy */}
-          <p className="text-lg text-brand-cream/70 mb-12 italic max-w-2xl mx-auto">
+          <p className="text-lg text-brand-white/60 mb-12 italic max-w-2xl mx-auto">
             Join Bangkok's most inclusive movement studio. No judgment. No intimidation. Just transformation.
           </p>
 

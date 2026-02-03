@@ -17,7 +17,7 @@ export function Footer() {
               <span className="text-brand-pink">FLIGHT</span>
             </div>
             <p className="text-brand-white/70 text-sm">
-              Bangkok's premier Muay Thai & aerial dance movement studio.
+              Bangkok&apos;s premier Muay Thai & aerial dance movement studio.
             </p>
             <p className="text-brand-white/50 text-xs mt-4 italic">
               Where superheroes are made.

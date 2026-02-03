@@ -44,17 +44,17 @@ export function Founders() {
               
               <div className="space-y-4 text-lg text-brand-black/70 mb-8">
                 <p>
-                  Shaleena didn't pick up Muay Thai to become aggressive. She picked it up to become confident. 
+                  Shaleena didn&apos;t pick up Muay Thai to become aggressive. She picked it up to become confident. 
                   And it changed everything.
                 </p>
                 
                 <p>
                   With 8 years of training across Thailand, the USA, and India, and certification from the 
-                  legendary Master Toddy's academy, Shaleena brings world-class technique with zero ego.
+                  legendary Master Toddy&apos;s academy, Shaleena brings world-class technique with zero ego.
                 </p>
                 
                 <p>
-                  She's here to teach you that discipline isn't about being hard on yourself — it's about 
+                  She&apos;s here to teach you that discipline isn&apos;t about being hard on yourself — it&apos;s about 
                   being <em className="text-brand-green font-semibold">good</em> to yourself. That real power 
                   is calm, controlled, and earned through repetition and respect.
                 </p>
@@ -100,7 +100,7 @@ export function Founders() {
               
               <div className="space-y-4 text-lg text-brand-black/70 mb-8">
                 <p>
-                  Tinsley has spent 5+ years in Bangkok's aerial dance scene, competing in three major 
+                  Tinsley has spent 5+ years in Bangkok&apos;s aerial dance scene, competing in three major 
                   competitions and mastering nearly every apparatus you can hang from.
                 </p>
                 
@@ -110,13 +110,13 @@ export function Founders() {
                 
                 <p>
                   She teaches seven aerial disciplines — lyra, silks, hammock, pole, aerial pole, cube, 
-                  and straps — with the kind of patience and encouragement that makes you forget you're 
+                  and straps — with the kind of patience and encouragement that makes you forget you&apos;re 
                   upside down for the first time.
                 </p>
                 
                 <p>
-                  Tinsley believes aerial isn't about being "naturally flexible" or "already strong." 
-                  It's about showing up, trusting the process, and letting yourself play.
+                  Tinsley believes aerial isn&apos;t about being &quot;naturally flexible&quot; or &quot;already strong.&quot; 
+                  It&apos;s about showing up, trusting the process, and letting yourself play.
                 </p>
               </div>
 

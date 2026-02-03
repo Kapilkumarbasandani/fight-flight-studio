@@ -38,7 +38,7 @@ export function Offerings() {
 
               {/* What You'll Experience */}
               <div className="mb-8">
-                <h4 className="text-xl font-bold mb-4 text-brand-white">What You'll Experience:</h4>
+                <h4 className="text-xl font-bold mb-4 text-brand-white">What You&apos;ll Experience:</h4>
                 <ul className="space-y-2 text-brand-white/70">
                   <li className="flex items-start">
                     <span className="text-brand-green mr-2">→</span>

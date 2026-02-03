@@ -49,14 +49,14 @@ export function Hero() {
 
           {/* Subheadline */}
           <p className="text-xl md:text-2xl lg:text-3xl text-brand-white/70 max-w-4xl mx-auto mb-8 leading-relaxed transition-all duration-500 hover:text-brand-white/85">
-            Your body is capable of incredible things. We'll show you how to unlock them —{' '}
+            Your body is capable of incredible things. We&apos;ll show you how to unlock them —{' '}
             <span className="text-gradient-green font-semibold">through the power of Muay Thai</span> and{' '}
             <span className="text-gradient-pink font-semibold">the art of aerial dance</span>.
           </p>
 
           {/* Supporting Copy */}
           <p className="text-lg text-brand-white/60 mb-12 italic max-w-2xl mx-auto">
-            Join Bangkok's most inclusive movement studio. No judgment. No intimidation. Just transformation.
+            Join Bangkok&apos;s most inclusive movement studio. No judgment. No intimidation. Just transformation.
           </p>
 
           {/* CTAs */}

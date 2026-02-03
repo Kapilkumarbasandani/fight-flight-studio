@@ -32,7 +32,7 @@ export function BrandStory() {
       <div className="container-custom relative z-10">
         {/* Section Headline */}
         <h2 className="heading-lg text-center mb-16 text-brand-white">
-          You Don't Need Permission to Be <span className="text-gradient-green">Powerful</span>
+          You Don&apos;t Need Permission to Be <span className="text-gradient-green">Powerful</span>
         </h2>
 
         {/* Main Story */}
@@ -56,7 +56,7 @@ export function BrandStory() {
           <p>We don&apos;t train warriors. We train humans who want to feel like superheroes.</p>
           
           <p className="text-brand-white font-bold text-2xl">
-            And here's the secret: <span className="text-gradient-pink">you already are one.</span> You just need the right place to prove it.
+            And here&apos;s the secret: <span className="text-gradient-pink">you already are one.</span> You just need the right place to prove it.
           </p>
         </div>
 

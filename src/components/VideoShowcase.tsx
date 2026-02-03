@@ -32,9 +32,9 @@ export function VideoShowcase() {
           className="w-full h-full object-cover transition-opacity duration-1000 opacity-65 brightness-110"
         >
           {currentVideo === 'muaythai' ? (
-            <source src="/videos/Female Boxing Video.mp4" type="video/mp4" />
+            <source src="/fight-flight-studio/videos/Female Boxing Video.mp4" type="video/mp4" />
           ) : (
-            <source src="/videos/Aerial yoga.mp4" type="video/mp4" />
+            <source src="/fight-flight-studio/videos/Aerial yoga.mp4" type="video/mp4" />
           )}
         </video>
         {/* Fallback gradient background */}

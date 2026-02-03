@@ -23,7 +23,7 @@ export function Hero() {
           playsInline
           className="w-full h-full object-cover scale-105 opacity-75 brightness-110"
         >
-          <source src="/videos/Yoga 1.mp4" type="video/mp4" />
+          <source src="/fight-flight-studio/videos/Yoga 1.mp4" type="video/mp4" />
         </video>
         {/* Fallback gradient background */}
         <div className="absolute inset-0 bg-gradient-to-br from-brand-black via-brand-green/10 to-brand-black -z-10" />

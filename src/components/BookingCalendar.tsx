@@ -30,19 +30,19 @@ export function BookingCalendar() {
   return (
     <div>
       {/* Filters */}
-      <div className="bg-brand-white/5 border border-brand-white/10 p-6 mb-8">
+      <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6 mb-8 shadow-lg">
         <div className="flex items-center gap-2 mb-4">
-          <Filter className="text-brand-neon" size={20} />
-          <h3 className="text-lg font-bold text-brand-white">Filter Classes</h3>
+          <Filter className="text-brand-green" size={20} />
+          <h3 className="text-lg font-bold text-white">Filter Classes</h3>
         </div>
         <div className="grid md:grid-cols-3 gap-4">
           {/* Discipline */}
           <div>
-            <label className="block text-sm text-brand-white/70 mb-2">Discipline</label>
+            <label className="block text-sm text-gray-300 mb-2 font-medium">Discipline</label>
             <select
               value={selectedDiscipline}
               onChange={(e) => setSelectedDiscipline(e.target.value as any)}
-              className="w-full bg-brand-black border border-brand-white/30 text-brand-white px-4 py-2 focus:border-brand-neon focus:outline-none"
+              className="w-full bg-white border border-white/30 text-gray-900 rounded-lg px-4 py-2 focus:border-brand-green focus:outline-none focus:ring-2 focus:ring-brand-green/20"
             >
               <option value="all">All Classes</option>
               <option value="muay-thai">Muay Thai</option>
@@ -52,11 +52,11 @@ export function BookingCalendar() {
 
           {/* Level */}
           <div>
-            <label className="block text-sm text-brand-white/70 mb-2">Level</label>
+            <label className="block text-sm text-gray-300 mb-2 font-medium">Level</label>
             <select
               value={selectedLevel}
               onChange={(e) => setSelectedLevel(e.target.value as any)}
-              className="w-full bg-brand-black border border-brand-white/30 text-brand-white px-4 py-2 focus:border-brand-neon focus:outline-none"
+              className="w-full bg-white border border-white/30 text-gray-900 rounded-lg px-4 py-2 focus:border-brand-green focus:outline-none focus:ring-2 focus:ring-brand-green/20"
             >
               <option value="all">All Levels</option>
               <option value="beginner">Beginner Friendly</option>
@@ -67,11 +67,11 @@ export function BookingCalendar() {
 
           {/* Instructor */}
           <div>
-            <label className="block text-sm text-brand-white/70 mb-2">Instructor</label>
+            <label className="block text-sm text-gray-300 mb-2 font-medium">Instructor</label>
             <select
               value={selectedInstructor}
               onChange={(e) => setSelectedInstructor(e.target.value as any)}
-              className="w-full bg-brand-black border border-brand-white/30 text-brand-white px-4 py-2 focus:border-brand-neon focus:outline-none"
+              className="w-full bg-white border border-white/30 text-gray-900 rounded-lg px-4 py-2 focus:border-brand-green focus:outline-none focus:ring-2 focus:ring-brand-green/20"
             >
               <option value="all">All Instructors</option>
               <option value="Shaleena">Shaleena</option>
@@ -86,76 +86,166 @@ export function BookingCalendar() {
         {filteredClasses.map((classItem) => (
           <div
             key={classItem.id}
-            className={`border-2 p-6 transition-all duration-300 cursor-pointer ${
-              classItem.discipline === 'muay-thai'
-                ? 'border-brand-neon/30 hover:border-brand-neon bg-brand-neon/5'
-                : 'border-brand-pink/30 hover:border-brand-pink bg-brand-pink/5'
-            }`}
+            className="group relative overflow-hidden rounded-3xl cursor-pointer transition-all duration-500 hover:scale-[1.02]"
             onClick={() => setSelectedClass(classItem)}
           >
-            {/* Icon */}
-            <div className="text-3xl mb-3">
-              {classItem.discipline === 'muay-thai' ? '🥊' : '✨'}
-            </div>
+            {/* Gradient Background with Border */}
+            <div className={`absolute inset-0 ${
+              classItem.discipline === 'muay-thai'
+                ? 'bg-gradient-to-br from-brand-green/20 via-transparent to-brand-green/5'
+                : 'bg-gradient-to-br from-brand-pink/20 via-transparent to-brand-pink/5'
+            }`} />
+            
+            {/* Border Glow Effect */}
+            <div className={`absolute inset-0 rounded-3xl border-2 transition-all duration-300 ${
+              classItem.discipline === 'muay-thai'
+                ? 'border-brand-green/30 group-hover:border-brand-green group-hover:shadow-lg group-hover:shadow-brand-green/20'
+                : 'border-brand-pink/30 group-hover:border-brand-pink group-hover:shadow-lg group-hover:shadow-brand-pink/20'
+            }`} />
 
-            {/* Title */}
-            <h3 className="text-xl font-bold text-brand-white mb-2">{classItem.title}</h3>
-
-            {/* Details */}
-            <div className="space-y-1 text-sm text-brand-white/70 mb-4">
-              <p className="flex items-center gap-2">
-                <span>📅</span>
-                {new Date(classItem.date).toLocaleDateString('en-US', {
-                  weekday: 'short',
-                  month: 'short',
-                  day: 'numeric',
-                })}
-                {' • '}
-                {classItem.time}
-              </p>
-              <p className="flex items-center gap-2">
-                <span>👤</span>
-                {classItem.instructor}
-              </p>
-              <p className="flex items-center gap-2">
-                <span>⏱</span>
-                {classItem.duration} minutes
-              </p>
-              <p className="flex items-center gap-2">
-                <span>💳</span>
-                {classItem.credits} credit{classItem.credits > 1 ? 's' : ''}
-                {classItem.discipline === 'aerial' && (
-                  <span className="text-brand-pink text-xs">⚡ Aerial classes use 2 credits</span>
-                )}
-              </p>
-            </div>
-
-            {/* Availability */}
-            <div className="mb-4">
-              <div className="flex items-center justify-between text-xs text-brand-white/60 mb-1">
-                <span>Spots available</span>
-                <span>{classItem.spotsAvailable}/{classItem.spotsAvailable + 4}</span>
+            {/* Content */}
+            <div className="relative bg-white/5 backdrop-blur-xl p-6 h-full flex flex-col">
+              {/* Header with Icon and Badge */}
+              <div className="flex items-start justify-between mb-4">
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl transition-transform duration-300 group-hover:scale-110 ${
+                  classItem.discipline === 'muay-thai'
+                    ? 'bg-brand-green/20'
+                    : 'bg-brand-pink/20'
+                }`}>
+                  {classItem.discipline === 'muay-thai' ? '🥊' : '✨'}
+                </div>
+                <div className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
+                  classItem.discipline === 'muay-thai'
+                    ? 'bg-brand-green/20 text-brand-green border border-brand-green/30'
+                    : 'bg-brand-pink/20 text-brand-pink border border-brand-pink/30'
+                }`}>
+                  {classItem.level}
+                </div>
               </div>
-              <div className="w-full bg-brand-white/10 h-1">
-                <div
-                  className={`h-full ${
-                    classItem.discipline === 'muay-thai' ? 'bg-brand-neon' : 'bg-brand-pink'
-                  }`}
-                  style={{ width: `${(classItem.spotsAvailable / (classItem.spotsAvailable + 4)) * 100}%` }}
-                />
-              </div>
-            </div>
 
-            {/* CTA */}
-            <button
-              className={`w-full py-3 font-bold uppercase tracking-wide transition-all ${
+              {/* Title */}
+              <h3 className="text-2xl font-bold text-white mb-4 leading-tight">
+                {classItem.title}
+              </h3>
+
+              {/* Details Grid */}
+              <div className="grid grid-cols-2 gap-3 mb-6">
+                <div className="flex items-center gap-2 text-gray-300">
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                    classItem.discipline === 'muay-thai'
+                      ? 'bg-brand-green/10'
+                      : 'bg-brand-pink/10'
+                  }`}>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div className="text-sm">
+                    <div className="text-xs text-gray-400">Date</div>
+                    <div className="font-semibold">
+                      {new Date(classItem.date).toLocaleDateString('en-US', {
+                        month: 'short',
+                        day: 'numeric',
+                      })}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2 text-gray-300">
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                    classItem.discipline === 'muay-thai'
+                      ? 'bg-brand-green/10'
+                      : 'bg-brand-pink/10'
+                  }`}>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div className="text-sm">
+                    <div className="text-xs text-gray-400">Time</div>
+                    <div className="font-semibold">{classItem.time}</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2 text-gray-300">
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                    classItem.discipline === 'muay-thai'
+                      ? 'bg-brand-green/10'
+                      : 'bg-brand-pink/10'
+                  }`}>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                  </div>
+                  <div className="text-sm">
+                    <div className="text-xs text-gray-400">Instructor</div>
+                    <div className="font-semibold">{classItem.instructor}</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2 text-gray-300">
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                    classItem.discipline === 'muay-thai'
+                      ? 'bg-brand-green/10'
+                      : 'bg-brand-pink/10'
+                  }`}>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <div className="text-sm">
+                    <div className="text-xs text-gray-400">Duration</div>
+                    <div className="font-semibold">{classItem.duration}min</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Divider */}
+              <div className={`h-px mb-4 ${
                 classItem.discipline === 'muay-thai'
-                  ? 'bg-brand-neon text-brand-black hover:bg-opacity-90'
-                  : 'bg-brand-pink text-brand-white hover:bg-opacity-90'
-              }`}
-            >
-              Book Now
-            </button>
+                  ? 'bg-gradient-to-r from-transparent via-brand-green/30 to-transparent'
+                  : 'bg-gradient-to-r from-transparent via-brand-pink/30 to-transparent'
+              }`} />
+
+              {/* Availability */}
+              <div className="mb-6">
+                <div className="flex items-center justify-between text-xs text-gray-400 mb-2">
+                  <span className="font-medium">Availability</span>
+                  <span className="font-bold text-white">{classItem.spotsAvailable}/{classItem.spotsAvailable + 4} spots</span>
+                </div>
+                <div className="relative w-full h-2 bg-white/10 rounded-full overflow-hidden">
+                  <div
+                    className={`absolute h-full rounded-full transition-all duration-500 ${
+                      classItem.discipline === 'muay-thai' 
+                        ? 'bg-gradient-to-r from-brand-green to-brand-neon' 
+                        : 'bg-gradient-to-r from-brand-pink to-brand-rose'
+                    }`}
+                    style={{ width: `${(classItem.spotsAvailable / (classItem.spotsAvailable + 4)) * 100}%` }}
+                  />
+                </div>
+              </div>
+
+              {/* Book Button */}
+              <button
+                className={`w-full py-4 rounded-xl font-bold uppercase tracking-wider transition-all duration-300 transform group-hover:scale-[1.02] shadow-lg ${
+                  classItem.discipline === 'muay-thai'
+                    ? 'bg-gradient-to-r from-brand-green to-brand-neon text-white hover:shadow-brand-green/50'
+                    : 'bg-gradient-to-r from-brand-pink to-brand-rose text-white hover:shadow-brand-pink/50'
+                }`}
+              >
+                Book This Class
+              </button>
+
+              {/* Credits Badge */}
+              <div className="mt-3 text-center">
+                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-gray-400">
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  {classItem.credits} credit{classItem.credits > 1 ? 's' : ''}
+                </span>
+              </div>
+            </div>
           </div>
         ))}
       </div>

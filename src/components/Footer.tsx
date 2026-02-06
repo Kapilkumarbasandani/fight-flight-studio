@@ -6,7 +6,7 @@ export function Footer() {
 
   return (
     <footer className="bg-brand-black border-t border-brand-white/10">
-      <div className="container-custom py-8">
+      <div className="container-custom py-4">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
@@ -124,7 +124,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-brand-white/10 pt-8">
+        <div className="border-t border-brand-white/10 pt-4">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-brand-white/50 text-sm">
               © {currentYear} Fight & Flight Studio. All rights reserved.

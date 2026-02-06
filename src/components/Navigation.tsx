@@ -4,12 +4,15 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
+import { AuthModal } from './AuthModal'
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const pathname = usePathname()
   
   const isPricingPage = pathname === '/pricing'
@@ -33,6 +36,20 @@ export function Navigation() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [lastScrollY])
+
+  useEffect(() => {
+    // Check if user is logged in
+    const checkLoginStatus = () => {
+      const user = localStorage.getItem('user')
+      setIsLoggedIn(!!user)
+    }
+    
+    checkLoginStatus()
+    
+    // Listen for storage changes (when user logs in/out)
+    window.addEventListener('storage', checkLoginStatus)
+    return () => window.removeEventListener('storage', checkLoginStatus)
+  }, [])
 
   const navLinks = [
     { href: '#home', label: 'HOME' },
@@ -80,13 +97,21 @@ export function Navigation() {
                 {link.label}
               </a>
             ))}
-            <a
-              href="#pricing"
-              onClick={(e) => handleClick(e, '#pricing')}
-              className="btn-primary text-sm py-3 px-6 cursor-pointer"
-            >
-              JOIN NOW
-            </a>
+            {isLoggedIn ? (
+              <Link
+                href="/dashboard"
+                className="btn-primary text-sm py-3 px-6 cursor-pointer"
+              >
+                DASHBOARD
+              </Link>
+            ) : (
+              <button
+                onClick={() => setIsAuthModalOpen(true)}
+                className="btn-primary text-sm py-3 px-6 cursor-pointer"
+              >
+                JOIN NOW
+              </button>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -111,16 +136,27 @@ export function Navigation() {
                 {link.label}
               </a>
             ))}
-            <a
-              href="#pricing"
-              onClick={(e) => handleClick(e, '#pricing')}
-              className="block btn-primary text-sm py-3 px-6 text-center cursor-pointer"
-            >
-              JOIN NOW
-            </a>
+            {isLoggedIn ? (
+              <Link
+                href="/dashboard"
+                className="block btn-primary text-sm py-3 px-6 text-center cursor-pointer w-full"
+              >
+                DASHBOARD
+              </Link>
+            ) : (
+              <button
+                onClick={() => setIsAuthModalOpen(true)}
+                className="block btn-primary text-sm py-3 px-6 text-center cursor-pointer w-full"
+              >
+                JOIN NOW
+              </button>
+            )}
           </div>
         )}
       </div>
+
+      {/* Auth Modal */}
+      <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
     </nav>
   )
 }

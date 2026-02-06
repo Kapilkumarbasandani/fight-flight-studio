@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { Oswald, Work_Sans } from 'next/font/google'
 import './globals.css'
 import { Navigation } from '@/components/Navigation'
-import { Footer } from '@/components/Footer'
 
 const oswald = Oswald({ 
   subsets: ['latin'],
@@ -32,7 +31,6 @@ export default function RootLayout({
       <body>
         <Navigation />
         <main>{children}</main>
-        <Footer />
       </body>
     </html>
   )

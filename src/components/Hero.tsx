@@ -23,14 +23,14 @@ export function Hero() {
           playsInline
           className="w-full h-full object-cover scale-105 opacity-85 brightness-125"
         >
-          <source src="/fight-flight-studio/videos/Yoga 1.mp4" type="video/mp4" />
+          <source src="/fight-flight-studio/videos/home.mp4" type="video/mp4" />
         </video>
         {/* Fallback gradient background */}
         <div className="absolute inset-0 bg-gradient-to-br from-brand-black via-brand-green/10 to-brand-black -z-10" />
       </div>
 
       {/* Decorative Elements */}
-      <div className="absolute top-1/4 left-10 w-96 h-96 bg-brand-green/15 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute top-1/4 left-10 w-96 h-96 bg-brand-green/15 rounded-full blur-3xl" />
       <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-brand-rose/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
 
       {/* Content */}
@@ -46,18 +46,6 @@ export function Hero() {
             <span className="text-gradient-pink">Fly.</span>{' '}
             <span className="text-brand-white/80">Become.</span>
           </h1>
-
-          {/* Subheadline */}
-          <p className="text-xl md:text-2xl lg:text-3xl text-brand-white/70 max-w-4xl mx-auto mb-8 leading-relaxed transition-all duration-500 hover:text-brand-white/85">
-            Your body is capable of incredible things. We&apos;ll show you how to unlock them —{' '}
-            <span className="text-gradient-green font-semibold">through the power of Muay Thai</span> and{' '}
-            <span className="text-gradient-pink font-semibold">the art of aerial dance</span>.
-          </p>
-
-          {/* Supporting Copy */}
-          <p className="text-lg text-brand-white/60 mb-12 italic max-w-2xl mx-auto">
-            Join Bangkok&apos;s most inclusive movement studio. No judgment. No intimidation. Just transformation.
-          </p>
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">

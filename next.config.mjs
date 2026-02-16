@@ -29,6 +29,8 @@ function getTurboRules() {
 
 const nextConfig = {
   reactStrictMode: true,
+  // Explicitly prevent static export - we need server-side features
+  output: undefined,
   experimental: {
     turbo: {
       rules: getTurboRules(),
@@ -44,8 +46,6 @@ const nextConfig = {
       },
     ],
   },
-  // Ensure proper asset loading
-  assetPrefix: process.env.NODE_ENV === 'production' ? undefined : undefined,
   basePath: '',
   trailingSlash: false,
   allowedDevOrigins: ["*.daytona.work", "*.softgen.dev"],

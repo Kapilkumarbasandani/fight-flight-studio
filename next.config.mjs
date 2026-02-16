@@ -29,7 +29,6 @@ function getTurboRules() {
 
 const nextConfig = {
   reactStrictMode: true,
-  output: 'standalone',
   experimental: {
     turbo: {
       rules: getTurboRules(),
@@ -37,6 +36,7 @@ const nextConfig = {
   },
   images: {
     unoptimized: true,
+    domains: ['fight-flight-studio.vercel.app'],
     remotePatterns: [
       {
         protocol: "https",
@@ -44,6 +44,10 @@ const nextConfig = {
       },
     ],
   },
+  // Ensure proper asset loading
+  assetPrefix: process.env.NODE_ENV === 'production' ? undefined : undefined,
+  basePath: '',
+  trailingSlash: false,
   allowedDevOrigins: ["*.daytona.work", "*.softgen.dev"],
 };
 

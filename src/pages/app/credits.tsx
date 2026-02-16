@@ -203,6 +203,8 @@ export default function CreditsPage() {
             </div>
           </div>
         </div>
+      </>
+    )}
 
         {/* Razorpay Checkout Simulation Modal */}
         {showCheckout && selectedPackage && (

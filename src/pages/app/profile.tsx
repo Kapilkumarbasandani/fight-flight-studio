@@ -2,6 +2,7 @@ import { SEO } from "@/components/SEO";
 import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
 import { User, Mail, Phone, MapPin, Calendar, Edit, Camera, Bell, Lock, CreditCard } from "lucide-react";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import type { UserResponse } from "@/models/User";
 
 export default function ProfilePage() {
@@ -295,9 +296,9 @@ export default function ProfilePage() {
                          user?.membership?.type === 'drop-in' ? 'Drop-in' : 'No Plan'}
                       </p>
                     </div>
-                    <a href="/app/credits" className="px-6 py-2 glass-card border border-white/10 text-white font-bold rounded-lg hover:border-neonPink/50 transition-all duration-300">
+                    <Link href="/app/credits" className="px-6 py-2 glass-card border border-white/10 text-white font-bold rounded-lg hover:border-neonPink/50 transition-all duration-300">
                       Buy Credits
-                    </a>
+                    </Link>
                   </div>
                   {user?.membership?.endDate && (
                     <p className="text-white/60 text-sm">

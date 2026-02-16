@@ -114,8 +114,8 @@ export default function CreditsPage() {
                 </div>
               )}
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="md:col-span-2 space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="md:col-span-2 space-y-6">
               <div className="glass-card p-8 border border-white/10 relative overflow-hidden group">
                 <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
                   <Zap className="w-48 h-48 text-neonPink transform rotate-12" />
@@ -202,16 +202,15 @@ export default function CreditsPage() {
               </button>
             </div>
           </div>
-        </div>
-      </>
-    )}
+        </>
+      )}
 
-        {/* Razorpay Checkout Simulation Modal */}
-        {showCheckout && selectedPackage && (
-          <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <div className="glass-card border border-white/20 max-w-md w-full p-8 relative animate-scale-in">
-              <button 
-                onClick={() => {
+      {/* Razorpay Checkout Simulation Modal */}
+      {showCheckout && selectedPackage && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="glass-card border border-white/20 max-w-md w-full p-8 relative animate-scale-in">
+            <button 
+              onClick={() => {
                   setShowCheckout(false);
                   setSelectedPackage(null);
                   setSuccess(false);
@@ -290,6 +289,7 @@ export default function CreditsPage() {
             </div>
           </div>
         )}
+        </div>
       </DashboardLayout>
     </>
   );

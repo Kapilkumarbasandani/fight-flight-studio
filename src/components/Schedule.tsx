@@ -86,6 +86,13 @@ export function Schedule() {
     },
   ];
 
+  // Group classes by day and type
+  const scheduleByDay = schedule.map(day => ({
+    day: day.day,
+    muayThai: day.classes.filter(c => c.type === 'muayThai'),
+    aerial: day.classes.filter(c => c.type === 'aerial')
+  }));
+
   const handleClassClick = (day: string, time: string) => {
     setSelectedClass({ day, time });
   };
@@ -117,97 +124,84 @@ export function Schedule() {
           </div>
         </div>
 
-        {/* Compact Weekly Grid */}
-        <div className="glass-card-intense p-6 md:p-8 overflow-x-auto cinematic-shadow">
-          <div className="min-w-[900px]">
-            {/* Header Row */}
-            <div className="grid grid-cols-8 gap-2 mb-4 pb-4 border-b border-white/10">
-              <div className="text-center">
-                <span className="text-white/40 text-xs uppercase tracking-wider font-bold">Time</span>
-              </div>
-              {schedule.map((day) => (
-                <div key={day.day} className="text-center">
-                  <span className="headline-font text-white text-base md:text-lg">{day.day}</span>
+        {/* Weekly Grid - Two Columns Per Day */}
+        <div className="glass-card-intense p-6 md:p-8 cinematic-shadow">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {scheduleByDay.map((daySchedule) => (
+              <div key={daySchedule.day} className="space-y-4">
+                {/* Day Header */}
+                <div className="text-center pb-3 border-b border-white/10">
+                  <h3 className="headline-font text-white text-2xl md:text-3xl">{daySchedule.day}</h3>
                 </div>
-              ))}
-            </div>
 
-            {/* Time Slots Grid */}
-            <div className="space-y-2">
-              {/* Generate all unique time slots */}
-              {Array.from(
-                new Set(
-                  schedule.flatMap((day) => day.classes.map((c) => c.time))
-                )
-              )
-                .sort((a, b) => {
-                  const timeA = new Date(`2000-01-01 ${a}`);
-                  const timeB = new Date(`2000-01-01 ${b}`);
-                  return timeA.getTime() - timeB.getTime();
-                })
-                .map((timeSlot) => (
-                  <div key={timeSlot} className="grid grid-cols-8 gap-2 items-start">
-                    {/* Time Label */}
-                    <div className="flex items-center justify-center py-3">
-                      <span className="text-white/60 text-xs font-medium">{timeSlot}</span>
+                {/* Two Column Layout for MT and AA */}
+                <div className="grid grid-cols-2 gap-3">
+                  {/* Muay Thai Column */}
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-2 h-2 bg-neonGreen rounded-full" />
+                      <span className="text-white/60 text-xs font-bold uppercase tracking-wide">MT</span>
                     </div>
-
-                    {/* Day Columns */}
-                    {schedule.map((day) => {
-                      const classInSlot = day.classes.find((c) => c.time === timeSlot);
-                      
-                      if (!classInSlot) {
-                        return <div key={day.day} className="py-3" />;
-                      }
-
-                      const isSelected =
-                        selectedClass?.day === day.day && selectedClass?.time === timeSlot;
-
-                      return (
+                    {daySchedule.muayThai.length === 0 ? (
+                      <div className="text-center py-4 px-2 rounded-lg bg-white/5">
+                        <span className="text-white/30 text-xs">No classes</span>
+                      </div>
+                    ) : (
+                      daySchedule.muayThai.map((classItem, idx) => (
                         <button
-                          key={day.day}
-                          onClick={() => handleClassClick(day.day, timeSlot)}
-                          className={`
-                            group relative py-3 px-2 rounded-2xl transition-all duration-300 cursor-pointer
-                            ${
-                              classInSlot.type === "muayThai"
-                                ? "bg-neonGreen/10 border border-neonGreen/30 hover:bg-neonGreen/20 hover:border-neonGreen/50"
-                                : "bg-neonPink/10 border border-neonPink/30 hover:bg-neonPink/20 hover:border-neonPink/50"
-                            }
-                            ${isSelected ? "ring-2 ring-white/50 scale-105" : ""}
-                          `}
+                          key={idx}
+                          onClick={() => handleClassClick(daySchedule.day, classItem.time)}
+                          className="w-full group relative py-3 px-3 rounded-xl transition-all duration-300 cursor-pointer bg-neonGreen/10 border border-neonGreen/30 hover:bg-neonGreen/20 hover:border-neonGreen/50 hover:scale-105"
                         >
                           <div className="text-center">
-                            <div
-                              className={`
-                                text-xs font-bold mb-0.5
-                                ${classInSlot.type === "muayThai" ? "text-neonGreen" : "text-neonPink"}
-                              `}
-                            >
-                              {classInSlot.type === "muayThai" ? "MT" : "AA"}
+                            <div className="text-neonGreen text-sm font-bold mb-1">
+                              {classItem.time}
                             </div>
-                            <div className="text-white/70 text-[10px] leading-tight">
-                              {classInSlot.level}
+                            <div className="text-white/70 text-xs leading-tight">
+                              {classItem.level}
                             </div>
                           </div>
-
-                          {/* Hover Glow Effect */}
-                          <div
-                            className={`
-                              absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl
-                              ${
-                                classInSlot.type === "muayThai"
-                                  ? "bg-neonGreen/20"
-                                  : "bg-neonPink/20"
-                              }
-                            `}
-                          />
+                          {/* Hover Glow */}
+                          <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-lg bg-neonGreen/20" />
                         </button>
-                      );
-                    })}
+                      ))
+                    )}
                   </div>
-                ))}
-            </div>
+
+                  {/* Aerial Arts Column */}
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-2 h-2 bg-neonPink rounded-full" />
+                      <span className="text-white/60 text-xs font-bold uppercase tracking-wide">AA</span>
+                    </div>
+                    {daySchedule.aerial.length === 0 ? (
+                      <div className="text-center py-4 px-2 rounded-lg bg-white/5">
+                        <span className="text-white/30 text-xs">No classes</span>
+                      </div>
+                    ) : (
+                      daySchedule.aerial.map((classItem, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => handleClassClick(daySchedule.day, classItem.time)}
+                          className="w-full group relative py-3 px-3 rounded-xl transition-all duration-300 cursor-pointer bg-neonPink/10 border border-neonPink/30 hover:bg-neonPink/20 hover:border-neonPink/50 hover:scale-105"
+                        >
+                          <div className="text-center">
+                            <div className="text-neonPink text-sm font-bold mb-1">
+                              {classItem.time}
+                            </div>
+                            <div className="text-white/70 text-xs leading-tight">
+                              {classItem.level}
+                            </div>
+                          </div>
+                          {/* Hover Glow */}
+                          <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-lg bg-neonPink/20" />
+                        </button>
+                      ))
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 

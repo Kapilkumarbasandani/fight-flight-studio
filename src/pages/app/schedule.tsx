@@ -61,11 +61,15 @@ export default function SchedulePage() {
     }
   };
 
-  // Group classes by day
+  // Group classes by day and type
   const schedule = days.reduce((acc, day) => {
-    acc[day] = classes.filter(cls => cls.day === day);
+    const dayClasses = classes.filter(cls => cls.day === day);
+    acc[day] = {
+      muayThai: dayClasses.filter(cls => cls.type === 'muay-thai'),
+      aerial: dayClasses.filter(cls => cls.type === 'aerial')
+    };
     return acc;
-  }, {} as Record<string, ClassResponse[]>);
+  }, {} as Record<string, { muayThai: ClassResponse[], aerial: ClassResponse[] }>);
 
   const getClassColor = (type: string) => {
     switch(type) {
@@ -278,85 +282,182 @@ export default function SchedulePage() {
             <div className="space-y-4">
               {loading ? (
                 <div className="text-center py-12 text-white/60">Loading classes...</div>
-              ) : schedule[selectedDay]?.length === 0 ? (
+              ) : (!schedule[selectedDay]?.muayThai?.length && !schedule[selectedDay]?.aerial?.length) ? (
                 <div className="text-center py-12 text-white/60">No classes scheduled for {selectedDay}</div>
               ) : (
-                schedule[selectedDay]?.map((classItem, index) => {
-                  const colors = getClassColor(classItem.type);
-                  const spotsLeft = classItem.capacity - (classItem.bookedCount || 0);
-                  const almostFull = spotsLeft <= 3 && spotsLeft > 0;
-                  const isFull = spotsLeft === 0;
-                  const bookingCheck = canBookClass(classItem);
-                
-                  return (
-                    <div
-                      key={index}
-                      className="flex items-center justify-between p-6 bg-white/5 rounded-2xl border border-white/10 hover:border-neonGreen/50 transition-all duration-300 group"
-                    >
-                      <div className="flex items-center gap-6 flex-1">
-                        <div className={`w-1 h-16 rounded-full ${colors.bg}`} />
-                      
-                        <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-2 flex-wrap">
-                            <h3 className="text-xl font-black text-white">{classItem.name}</h3>
-                          
-                            <span className={`px-2 py-1 ${colors.bg}/20 ${colors.text} text-xs font-bold rounded`}>
-                              {classItem.creditsRequired} {classItem.creditsRequired === 1 ? 'CREDIT' : 'CREDITS'}
-                            </span>
-                          
-                          {almostFull && (
-                            <span className="px-2 py-1 bg-yellow-500/20 text-yellow-400 text-xs font-bold rounded">
-                              ALMOST FULL
-                            </span>
-                          )}
-                          
-                          {isFull && (
-                            <span className="px-2 py-1 bg-red-500/20 text-red-400 text-xs font-bold rounded">
-                              FULL
-                            </span>
-                          )}
-                        </div>
-                        
-                        <div className="flex flex-wrap items-center gap-4 text-sm text-white/60">
-                          <span className="flex items-center gap-2">
-                            <Clock className="w-4 h-4" />
-                            {classItem.time}
-                          </span>
-                          <span className="flex items-center gap-2">
-                            <User className="w-4 h-4" />
-                            {classItem.instructor}
-                          </span>
-                          <span className="flex items-center gap-2">
-                            <MapPin className="w-4 h-4" />
-                            {spotsLeft} spots left
-                          </span>
-                        </div>
-                      </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Muay Thai Column */}
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-1 h-8 rounded-full bg-neonGreen" />
+                      <h3 className="text-xl font-black text-white">Muay Thai</h3>
+                      <span className="px-2 py-1 bg-neonGreen/20 text-neonGreen text-xs font-bold rounded">
+                        {schedule[selectedDay]?.muayThai?.length || 0} {schedule[selectedDay]?.muayThai?.length === 1 ? 'CLASS' : 'CLASSES'}
+                      </span>
                     </div>
-
-                    {isFull ? (
-                      <button disabled className="px-6 py-3 bg-white/5 text-white/40 rounded-lg font-bold cursor-not-allowed whitespace-nowrap">
-                        Full
-                      </button>
-                    ) : !bookingCheck.allowed && bookingCheck.reason === "forms" ? (
-                      <Link href="/app/forms" className="px-6 py-3 bg-red-500/10 text-red-400 rounded-lg font-bold hover:bg-red-500/20 transition-all duration-300 whitespace-nowrap">
-                        Complete Forms
-                      </Link>
-                    ) : !bookingCheck.allowed && bookingCheck.reason === "credits" ? (
-                      <Link href="/app/credits" className="px-6 py-3 bg-yellow-500/10 text-yellow-400 rounded-lg font-bold hover:bg-yellow-500/20 transition-all duration-300 whitespace-nowrap">
-                        Buy Credits
-                      </Link>
+                    {schedule[selectedDay]?.muayThai?.length === 0 ? (
+                      <div className="text-center py-8 text-white/40 bg-white/5 rounded-xl border border-white/10">
+                        No Muay Thai classes today
+                      </div>
                     ) : (
-                      <button 
-                        onClick={() => handleBookClick(classItem)}
-                        className="px-6 py-3 bg-neonGreen/10 text-neonGreen rounded-lg font-bold hover:bg-neonGreen hover:text-black transition-all duration-300 whitespace-nowrap"
-                      >
-                        Book Class
-                      </button>
+                      schedule[selectedDay]?.muayThai?.map((classItem, index) => {
+                        const colors = getClassColor(classItem.type);
+                        const spotsLeft = classItem.capacity - (classItem.bookedCount || 0);
+                        const almostFull = spotsLeft <= 3 && spotsLeft > 0;
+                        const isFull = spotsLeft === 0;
+                        const bookingCheck = canBookClass(classItem);
+                      
+                        return (
+                          <div
+                            key={index}
+                            className="p-6 bg-white/5 rounded-2xl border border-white/10 hover:border-neonGreen/50 transition-all duration-300 group"
+                          >
+                            <div className="flex items-center gap-3 mb-3 flex-wrap">
+                              <h4 className="text-lg font-black text-white">{classItem.name}</h4>
+                              <span className={`px-2 py-1 ${colors.bg}/20 ${colors.text} text-xs font-bold rounded`}>
+                                {classItem.creditsRequired} {classItem.creditsRequired === 1 ? 'CREDIT' : 'CREDITS'}
+                              </span>
+                              {almostFull && (
+                                <span className="px-2 py-1 bg-yellow-500/20 text-yellow-400 text-xs font-bold rounded">
+                                  ALMOST FULL
+                                </span>
+                              )}
+                              {isFull && (
+                                <span className="px-2 py-1 bg-red-500/20 text-red-400 text-xs font-bold rounded">
+                                  FULL
+                                </span>
+                              )}
+                            </div>
+                            
+                            <div className="flex flex-col gap-2 text-sm text-white/60 mb-4">
+                              <span className="flex items-center gap-2">
+                                <Clock className="w-4 h-4" />
+                                {classItem.time}
+                              </span>
+                              <span className="flex items-center gap-2">
+                                <User className="w-4 h-4" />
+                                {classItem.instructor}
+                              </span>
+                              <span className="flex items-center gap-2">
+                                <MapPin className="w-4 h-4" />
+                                {spotsLeft} spots left
+                              </span>
+                            </div>
+
+                            <div className="pt-4 border-t border-white/10">
+                              {isFull ? (
+                                <button disabled className="w-full px-6 py-3 bg-white/5 text-white/40 rounded-lg font-bold cursor-not-allowed">
+                                  Full
+                                </button>
+                              ) : !bookingCheck.allowed && bookingCheck.reason === "forms" ? (
+                                <Link href="/app/forms" className="block text-center w-full px-6 py-3 bg-red-500/10 text-red-400 rounded-lg font-bold hover:bg-red-500/20 transition-all duration-300">
+                                  Complete Forms
+                                </Link>
+                              ) : !bookingCheck.allowed && bookingCheck.reason === "credits" ? (
+                                <Link href="/app/credits" className="block text-center w-full px-6 py-3 bg-yellow-500/10 text-yellow-400 rounded-lg font-bold hover:bg-yellow-500/20 transition-all duration-300">
+                                  Buy Credits
+                                </Link>
+                              ) : (
+                                <button 
+                                  onClick={() => handleBookClick(classItem)}
+                                  className="w-full px-6 py-3 bg-neonGreen text-black rounded-lg font-bold hover:bg-neonGreen/90 transition-all duration-300"
+                                >
+                                  Book Now
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        );
+                      })
                     )}
                   </div>
-                );
-              })
+
+                  {/* Aerial Arts Column */}
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-1 h-8 rounded-full bg-neonPink" />
+                      <h3 className="text-xl font-black text-white">Aerial Arts</h3>
+                      <span className="px-2 py-1 bg-neonPink/20 text-neonPink text-xs font-bold rounded">
+                        {schedule[selectedDay]?.aerial?.length || 0} {schedule[selectedDay]?.aerial?.length === 1 ? 'CLASS' : 'CLASSES'}
+                      </span>
+                    </div>
+                    {schedule[selectedDay]?.aerial?.length === 0 ? (
+                      <div className="text-center py-8 text-white/40 bg-white/5 rounded-xl border border-white/10">
+                        No Aerial Arts classes today
+                      </div>
+                    ) : (
+                      schedule[selectedDay]?.aerial?.map((classItem, index) => {
+                        const colors = getClassColor(classItem.type);
+                        const spotsLeft = classItem.capacity - (classItem.bookedCount || 0);
+                        const almostFull = spotsLeft <= 3 && spotsLeft > 0;
+                        const isFull = spotsLeft === 0;
+                        const bookingCheck = canBookClass(classItem);
+                      
+                        return (
+                          <div
+                            key={index}
+                            className="p-6 bg-white/5 rounded-2xl border border-white/10 hover:border-neonPink/50 transition-all duration-300 group"
+                          >
+                            <div className="flex items-center gap-3 mb-3 flex-wrap">
+                              <h4 className="text-lg font-black text-white">{classItem.name}</h4>
+                              <span className={`px-2 py-1 ${colors.bg}/20 ${colors.text} text-xs font-bold rounded`}>
+                                {classItem.creditsRequired} {classItem.creditsRequired === 1 ? 'CREDIT' : 'CREDITS'}
+                              </span>
+                              {almostFull && (
+                                <span className="px-2 py-1 bg-yellow-500/20 text-yellow-400 text-xs font-bold rounded">
+                                  ALMOST FULL
+                                </span>
+                              )}
+                              {isFull && (
+                                <span className="px-2 py-1 bg-red-500/20 text-red-400 text-xs font-bold rounded">
+                                  FULL
+                                </span>
+                              )}
+                            </div>
+                            
+                            <div className="flex flex-col gap-2 text-sm text-white/60 mb-4">
+                              <span className="flex items-center gap-2">
+                                <Clock className="w-4 h-4" />
+                                {classItem.time}
+                              </span>
+                              <span className="flex items-center gap-2">
+                                <User className="w-4 h-4" />
+                                {classItem.instructor}
+                              </span>
+                              <span className="flex items-center gap-2">
+                                <MapPin className="w-4 h-4" />
+                                {spotsLeft} spots left
+                              </span>
+                            </div>
+
+                            <div className="pt-4 border-t border-white/10">
+                              {isFull ? (
+                                <button disabled className="w-full px-6 py-3 bg-white/5 text-white/40 rounded-lg font-bold cursor-not-allowed">
+                                  Full
+                                </button>
+                              ) : !bookingCheck.allowed && bookingCheck.reason === "forms" ? (
+                                <Link href="/app/forms" className="block text-center w-full px-6 py-3 bg-red-500/10 text-red-400 rounded-lg font-bold hover:bg-red-500/20 transition-all duration-300">
+                                  Complete Forms
+                                </Link>
+                              ) : !bookingCheck.allowed && bookingCheck.reason === "credits" ? (
+                                <Link href="/app/credits" className="block text-center w-full px-6 py-3 bg-yellow-500/10 text-yellow-400 rounded-lg font-bold hover:bg-yellow-500/20 transition-all duration-300">
+                                  Buy Credits
+                                </Link>
+                              ) : (
+                                <button 
+                                  onClick={() => handleBookClick(classItem)}
+                                  className="w-full px-6 py-3 bg-neonPink text-black rounded-lg font-bold hover:bg-neonPink/90 transition-all duration-300"
+                                >
+                                  Book Now
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        );
+                      })
+                    )}
+                  </div>
+                </div>
               )}
             </div>
           </div>

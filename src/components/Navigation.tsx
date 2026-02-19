@@ -44,6 +44,16 @@ export function Navigation() {
     return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
 
+  // Listen for custom event to open auth modal
+  useEffect(() => {
+    const handleOpenAuthModal = () => {
+      setIsAuthModalOpen(true);
+    };
+
+    window.addEventListener("openAuthModal", handleOpenAuthModal);
+    return () => window.removeEventListener("openAuthModal", handleOpenAuthModal);
+  }, []);
+
   // In production: Check user role from /api/me
   // For now: simulate admin detection (can be toggled via localStorage)
   useState(() => {

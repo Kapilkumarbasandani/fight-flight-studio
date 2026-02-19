@@ -29,8 +29,9 @@ function getTurboRules() {
 
 const nextConfig = {
   reactStrictMode: true,
-  // Explicitly prevent static export - we need server-side features
-  output: undefined,
+  // Use standalone output for Docker deployments
+  // Set to undefined for Vercel deployments
+  output: process.env.DOCKER_BUILD === 'true' ? 'standalone' : undefined,
   eslint: {
     // Ignore ESLint errors during build (temporary fix for deployment)
     ignoreDuringBuilds: true,

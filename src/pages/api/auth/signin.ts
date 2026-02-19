@@ -52,12 +52,14 @@ export default async function handler(
       message: 'Signed in successfully',
       user: {
         _id: user._id?.toString(),
-        name: user.name,
+        name: user.profile?.name || user.name || '',
         email: user.email,
-        whatsapp: user.whatsapp,
+        phone: user.profile?.phone || user.whatsapp || '',
+        gender: user.profile?.gender || '',
         createdAt: user.createdAt,
         membership: user.membership,
         role: user.role || 'user',
+        credits: user.credits || { balance: 0, lifetime: 0 },
       },
     });
   } catch (error: any) {

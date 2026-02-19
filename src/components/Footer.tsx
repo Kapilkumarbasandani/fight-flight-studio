@@ -85,13 +85,18 @@ export function Footer() {
             <p className="text-gray-500 text-sm">
               © {currentYear} Fight&Flight. All rights reserved.
             </p>
-            <div className="flex gap-6">
-              <Link href="#" className="text-gray-500 hover:text-white text-sm transition-colors">
-                Privacy Policy
-              </Link>
-              <Link href="#" className="text-gray-500 hover:text-white text-sm transition-colors">
-                Terms of Service
-              </Link>
+            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
+              <div className="flex gap-6">
+                <Link href="#" className="text-gray-500 hover:text-white text-sm transition-colors">
+                  Privacy Policy
+                </Link>
+                <Link href="#" className="text-gray-500 hover:text-white text-sm transition-colors">
+                  Terms of Service
+                </Link>
+              </div>
+              <p className="text-gray-500 text-sm">
+                Enabled by <span className="text-neonGreen font-semibold">Ikara.Club</span>
+              </p>
             </div>
           </div>
         </div>

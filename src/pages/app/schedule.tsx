@@ -3,9 +3,11 @@ import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
 import { Calendar, Clock, User, MapPin, Filter, ChevronLeft, ChevronRight, X, AlertCircle, CreditCard, RefreshCw } from "lucide-react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import type { ClassResponse } from "@/models/Class";
 
 export default function SchedulePage() {
+  const router = useRouter();
   const [selectedDay, setSelectedDay] = useState("Monday");
   const [showBookingModal, setShowBookingModal] = useState(false);
   const [selectedClass, setSelectedClass] = useState<any>(null);
@@ -21,7 +23,37 @@ export default function SchedulePage() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+    
+    // Check for selected class from localStorage (from home page)
+    const selectedClassData = localStorage.getItem("selectedClass");
+    if (selectedClassData) {
+      try {
+        const { day, time } = JSON.parse(selectedClassData);
+        // Convert day abbreviation to full day name
+        const dayMap: Record<string, string> = {
+          MON: "Monday",
+          TUE: "Tuesday",
+          WED: "Wednesday",
+          THU: "Thursday",
+          FRI: "Friday",
+          SAT: "Saturday",
+          SUN: "Sunday"
+        };
+        const fullDay = dayMap[day] || day;
+        setSelectedDay(fullDay);
+        // Clean up
+        localStorage.removeItem("selectedClass");
+      } catch (e) {
+        console.error("Error parsing selected class:", e);
+      }
+    }
+    
+    // Check for query parameters
+    const { day, time } = router.query;
+    if (day && typeof day === "string") {
+      setSelectedDay(day);
+    }
+  }, [router.query]);
 
   const fetchData = async () => {
     setRefreshing(true);

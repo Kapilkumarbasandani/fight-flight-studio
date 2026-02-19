@@ -107,8 +107,8 @@ export function Hero() {
         }}
       >
         {/* Main Headline - Single Horizontal Line */}
-        <h1 className="headline-font text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white/95 tracking-[0.15em] uppercase mb-6 relative z-10">
-          Fight<span className="text-neonGreen">&</span><span className="text-neonPink">Flight</span>
+        <h1 className="headline-font text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white tracking-[0.15em] uppercase mb-6 relative z-10">
+          Fight&Flight
         </h1>
         <div className="text-lg md:text-xl lg:text-2xl text-white/80 mb-12 font-semibold">
           Where Grit meets Grace

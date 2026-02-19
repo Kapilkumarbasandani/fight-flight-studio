@@ -92,11 +92,21 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
           localStorage.setItem('user', JSON.stringify(data.user));
           // Trigger storage event for Navigation component
           window.dispatchEvent(new Event('storage'));
+          
+          // Check for redirect after login
+          const redirectUrl = localStorage.getItem('redirectAfterLogin');
+          const targetUrl = redirectUrl || '/app';
+          
+          // Clean up
+          if (redirectUrl) {
+            localStorage.removeItem('redirectAfterLogin');
+          }
+          
           setTimeout(() => {
             onClose();
             setSuccess('');
-            // Redirect to dashboard
-            window.location.href = '/app';
+            // Redirect to target page
+            window.location.href = targetUrl;
           }, 1500);
         } else {
           setError(data.message || 'Failed to sign in');

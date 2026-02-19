@@ -49,12 +49,15 @@ export function Tagline() {
         <h2 className="headline-font text-4xl md:text-6xl lg:text-7xl text-white mb-8 fade-in tracking-wide leading-tight">
           Bangalore's first and only
           <br />
-          <span className="text-neonGreen">Muay Thai and Aerial Dance</span> Studio
+          <span className="text-neonGreen">Muay Thai</span> and <span className="text-neonPink">Aerial Dance</span>
+          <br />
+          Studio
         </h2>
         <p className="text-gray-300 text-lg md:text-xl leading-relaxed fade-in max-w-3xl mx-auto">
           Fight & Flight is a space to learn how to fight and fly while you find your community, have fun, and learn a skill.
         </p>
       </div>
+
 
       {/* Floating particles */}
       <div className="absolute bottom-20 left-20 w-3 h-3 bg-neonGreen/30 rounded-full animate-pulse-slow blur-sm" style={{ zIndex: 15 }} />

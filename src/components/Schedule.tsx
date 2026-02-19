@@ -94,7 +94,23 @@ export function Schedule() {
   }));
 
   const handleClassClick = (day: string, time: string) => {
-    setSelectedClass({ day, time });
+    // Check if user is logged in
+    const user = typeof window !== "undefined" ? localStorage.getItem("user") : null;
+    
+    if (!user) {
+      // Store the intended action for after login
+      if (typeof window !== "undefined") {
+        localStorage.setItem("redirectAfterLogin", "/app/schedule");
+        localStorage.setItem("selectedClass", JSON.stringify({ day, time }));
+      }
+      // Trigger auth modal to open via custom event
+      window.dispatchEvent(new CustomEvent("openAuthModal"));
+    } else {
+      // User is logged in, redirect to schedule page
+      if (typeof window !== "undefined") {
+        window.location.href = `/app/schedule?day=${encodeURIComponent(day)}&time=${encodeURIComponent(time)}`;
+      }
+    }
   };
 
   return (

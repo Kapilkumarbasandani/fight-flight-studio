@@ -186,6 +186,17 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           <main className="p-6 md:p-8 lg:p-12">
             {children}
           </main>
+
+          <footer className="border-t border-white/10 py-6 px-6 md:px-8 lg:px-12">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+              <p className="text-gray-500 text-sm">
+                © {new Date().getFullYear()} Fight&Flight. All rights reserved.
+              </p>
+              <p className="text-gray-500 text-sm">
+                Enabled by <span className="text-neonGreen font-semibold">Ikara.Club</span>
+              </p>
+            </div>
+          </footer>
         </div>
       </div>
 

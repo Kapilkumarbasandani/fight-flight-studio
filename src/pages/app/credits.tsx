@@ -56,14 +56,97 @@ export default function CreditsPage() {
     setShowCheckout(true);
   };
 
-  const handleCheckout = () => {
+  const fetchCreditData = async () => {
+    try {
+      const user = JSON.parse(localStorage.getItem('user') || '{}');
+      const userId = user._id;
+
+      if (!userId) {
+        return;
+      }
+
+      // Fetch credits balance
+      const creditsRes = await fetch(`/api/credits?userId=${userId}`);
+      const creditsData = await creditsRes.json();
+      setCreditData(creditsData);
+
+      // Update localStorage with new balance
+      const updatedUser = { ...user, credits: { balance: creditsData.balance } };
+      localStorage.setItem('user', JSON.stringify(updatedUser));
+
+      // Fetch credit history
+      const historyRes = await fetch(`/api/credits/history?userId=${userId}&limit=10`);
+      const historyData = await historyRes.json();
+      setHistory(historyData);
+    } catch (error) {
+      console.error('Error fetching credit data:', error);
+    }
+  };
+
+  const handleCheckout = async () => {
     setProcessing(true);
     
-    // Simulate Razorpay checkout flow
-    // In production: POST /api/payments/create-order then launch Razorpay UI
-    setTimeout(() => {
+    try {
+      const user = JSON.parse(localStorage.getItem('user') || '{}');
+      const userId = user._id;
+
+      if (!userId) {
+        alert('User not found. Please login again.');
+        setProcessing(false);
+        return;
+      }
+
+      // Step 1: Create order
+      const orderRes = await fetch('/api/payments/create-order', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId,
+          packageId: selectedPackage.id,
+          credits: selectedPackage.credits,
+          price: selectedPackage.price
+        })
+      });
+
+      if (!orderRes.ok) {
+        throw new Error('Failed to create order');
+      }
+
+      const orderData = await orderRes.json();
+
+      // Step 2: Simulate payment (in production, this would be Razorpay)
+      // For now, we'll directly verify the payment
+      const mockPaymentId = `pay_${Date.now()}`;
+
+      // Step 3: Verify payment and add credits
+      const verifyRes = await fetch('/api/payments/verify', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId,
+          orderId: orderData.orderId,
+          paymentId: mockPaymentId,
+          packageId: selectedPackage.id,
+          credits: selectedPackage.credits,
+          validityDays: 90 // Default 90 days validity
+        })
+      });
+
+      if (!verifyRes.ok) {
+        throw new Error('Failed to verify payment');
+      }
+
+      const verifyData = await verifyRes.json();
+
       setProcessing(false);
       setSuccess(true);
+
+      // Refresh credit data to show updated balance
+      await fetchCreditData();
       
       // Reset after success animation
       setTimeout(() => {
@@ -71,7 +154,11 @@ export default function CreditsPage() {
         setSuccess(false);
         setSelectedPackage(null);
       }, 2000);
-    }, 2000);
+    } catch (error) {
+      console.error('Checkout error:', error);
+      alert('Payment failed. Please try again.');
+      setProcessing(false);
+    }
   };
 
   const downloadInvoice = (url: string) => {

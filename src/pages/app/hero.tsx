@@ -101,10 +101,21 @@ export default function HeroStatsPage() {
                     strokeDashoffset="141.37"
                     className="transition-all duration-1000"
                     style={{
-                      filter: "drop-shadow(0 0 10px #39FF14)"
+                      filter: "drop-shadow(0 0 10px #39FF14)",
+                      animation: "spinCircle 8s linear infinite"
                     }}
                   />
                 </svg>
+                <style jsx>{`
+                  @keyframes spinCircle {
+                    from {
+                      stroke-dashoffset: 141.37;
+                    }
+                    to {
+                      stroke-dashoffset: 706.85;
+                    }
+                  }
+                `}</style>
                 
                 {/* Center Content */}
                 <div className="absolute inset-0 flex items-center justify-center flex-col">

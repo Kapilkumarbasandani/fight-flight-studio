@@ -166,11 +166,11 @@ export default function BookingsPage() {
                     className="flex items-center justify-between p-6 bg-white/5 rounded-lg border border-white/10 hover:border-neonGreen/50 transition-all duration-300 flex-wrap gap-4"
                   >
                     <div className="flex items-center gap-4 flex-1 min-w-[300px]">
-                      <div className={`w-2 h-16 rounded-full ${booking.type === "muay-thai" ? "bg-neonGreen" : "bg-neonPink"}`} />
+                      <div className={`w-2 h-16 rounded-full ${booking.classType === "muay-thai" ? "bg-neonGreen" : "bg-neonPink"}`} />
                       
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-2 flex-wrap">
-                          <h3 className="text-lg font-bold text-white">{booking.name}</h3>
+                          <h3 className="text-lg font-bold text-white">{booking.className}</h3>
                           {booking.status === "waitlist" ? (
                             <span className="px-3 py-1 bg-yellow-500/20 text-yellow-400 text-xs font-bold rounded-full">
                               WAITLIST
@@ -232,11 +232,11 @@ export default function BookingsPage() {
                     className="flex items-center justify-between p-6 bg-white/5 rounded-lg border border-white/10 opacity-75"
                   >
                     <div className="flex items-center gap-4 flex-1">
-                      <div className={`w-2 h-16 rounded-full ${booking.type === "muay-thai" ? "bg-neonGreen" : "bg-neonPink"} opacity-50`} />
+                      <div className={`w-2 h-16 rounded-full ${booking.classType === "muay-thai" ? "bg-neonGreen" : "bg-neonPink"} opacity-50`} />
                       
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-2 flex-wrap">
-                          <h3 className="text-lg font-bold text-white/80">{booking.name}</h3>
+                          <h3 className="text-lg font-bold text-white/80">{booking.className}</h3>
                           {booking.attended ? (
                             <span className="px-3 py-1 bg-neonGreen/20 text-neonGreen text-xs font-bold rounded-full">
                               ATTENDED

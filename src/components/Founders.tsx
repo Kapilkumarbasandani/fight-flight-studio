@@ -43,7 +43,9 @@ export function Founders() {
               <span className="text-white/40 uppercase text-[10px] tracking-[0.3em] font-medium">Meet the Visionaries</span>
             </div>
             <h2 className="headline-font text-5xl md:text-7xl lg:text-8xl text-white mb-6 fade-in leading-tight tracking-wide">
-              Two Worlds, One Vision.
+              Two Worlds.
+              <br />
+              One Vision.
             </h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
               Two worlds. Two disciplines. One revolutionary space.

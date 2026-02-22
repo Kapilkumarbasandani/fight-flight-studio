@@ -46,13 +46,22 @@ export function Tagline() {
 
       {/* Content - Centered */}
       <div className="relative z-20 max-w-4xl mx-auto px-6 text-center">
-        <h2 className="headline-font text-4xl md:text-6xl lg:text-7xl text-white mb-8 fade-in tracking-wide leading-tight">
-          Bangalore's first and only
-          <br />
-          <span className="text-neonGreen">Muay Thai</span> and <span className="text-neonPink">Aerial Dance</span>
-          <br />
-          Studio
-        </h2>
+          <h2 className="headline-font text-white mb-8 fade-in tracking-wide leading-tight text-center">
+
+            <div className="text-4xl md:text-6xl lg:text-6xl">
+              Bangalore's first and only
+            </div>
+
+            <div className="text-3xl md:text-5xl lg:text-5xl mt-3 whitespace-nowrap">
+              <span className="text-neonGreen">Muay Thai</span> and{" "}
+              <span className="text-neonPink">Aerial Dance</span>
+            </div>
+
+            <div className="text-4xl md:text-6xl lg:text-6xl mt-3">
+              Studio
+            </div>
+
+          </h2>
         <p className="text-gray-300 text-lg md:text-xl leading-relaxed fade-in max-w-3xl mx-auto">
           Fight & Flight is a space to learn how to fight and fly while you find your community, have fun, and learn a skill.
         </p>

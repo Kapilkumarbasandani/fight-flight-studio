@@ -13,7 +13,7 @@ export default function Document() {
           The application will not function without it.
         */}
         <script
-          src="https://cdn.softgen.ai/script.js"
+          src={process.env.NEXT_PUBLIC_SOFTGEN_SCRIPT_URL || "https://cdn.softgen.ai/script.js"}
           async
           data-softgen-monitoring="true"
         />
@@ -29,7 +29,7 @@ export default function Document() {
         {/* Visual Editor Script */}
         {process.env.NODE_ENV === "development" && (
           <script
-            src="https://cdn.softgen.dev/visual-editor.min.js"
+            src={process.env.NEXT_PUBLIC_SOFTGEN_EDITOR_URL || "https://cdn.softgen.dev/visual-editor.min.js"}
             async
             data-softgen-visual-editor="true"
           />

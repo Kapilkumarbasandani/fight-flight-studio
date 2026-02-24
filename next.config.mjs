@@ -36,6 +36,13 @@ const nextConfig = {
     // Ignore ESLint errors during build (temporary fix for deployment)
     ignoreDuringBuilds: true,
   },
+  // Environment variables available to the browser
+  env: {
+    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
+    NEXT_PUBLIC_SITE_NAME: process.env.NEXT_PUBLIC_SITE_NAME,
+    NEXT_PUBLIC_SOFTGEN_SCRIPT_URL: process.env.NEXT_PUBLIC_SOFTGEN_SCRIPT_URL,
+    NEXT_PUBLIC_SOFTGEN_EDITOR_URL: process.env.NEXT_PUBLIC_SOFTGEN_EDITOR_URL,
+  },
   experimental: {
     turbo: {
       rules: getTurboRules(),
@@ -43,7 +50,14 @@ const nextConfig = {
   },
   images: {
     unoptimized: true,
-    domains: ['fight-flight-studio.vercel.app'],
+    domains: [
+      'fight-flight-studio.vercel.app',
+      'fightandflight.in',
+      'www.fightandflight.in',
+      'images.unsplash.com',
+      'cdn.softgen.ai',
+      'cdn.softgen.dev',
+    ],
     remotePatterns: [
       {
         protocol: "https",

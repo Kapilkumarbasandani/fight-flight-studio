@@ -9,7 +9,7 @@ frontend:
         - npm ci
     build:
       commands:
-        - env | grep -e MONGODB_URI -e NEXT_PUBLIC_ >> .env.production
+        - env | grep -e MONGODB_URI -e NEXT_PUBLIC_APP_URL >> .env.production
         - npm run build
   artifacts:
     baseDirectory: .next

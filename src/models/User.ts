@@ -6,6 +6,8 @@ export interface User {
   password: string;
   createdAt: Date;
   profile?: {
+    name?: string;
+    phone?: string;
     address?: string;
     birthday?: string;
     gender?: 'male' | 'female' | 'other';
@@ -48,6 +50,8 @@ export interface UserResponse {
   whatsapp: string;
   createdAt: Date;
   profile?: {
+    name?: string;
+    phone?: string;
     address?: string;
     birthday?: string;
     gender?: 'male' | 'female' | 'other';

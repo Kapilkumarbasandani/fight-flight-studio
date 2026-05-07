@@ -120,6 +120,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(400).json({ error: 'Missing required fields' });
       }
 
+      const client = await clientPromise;
+      const db = client.db('fight-flight-studio');
+
       // Check if user exists
       const user = await db.collection('users').findOne({ _id: new ObjectId(userId) });
       if (!user) {

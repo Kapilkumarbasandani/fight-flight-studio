@@ -6,10 +6,12 @@ frontend:
         - nvm install 20
         - nvm use 20
         - node -v
-        - npm ci
+        - npm ci --no-audit
     build:
       commands:
-        - env | grep -e MONGODB_URI -e NEXT_PUBLIC_APP_URL >> .env.production
+        - rm -f .env.production
+        - if [ -n "$MONGODB_URI" ]; then echo "MONGODB_URI=$MONGODB_URI" >> .env.production; fi
+        - if [ -n "$NEXT_PUBLIC_APP_URL" ]; then echo "NEXT_PUBLIC_APP_URL=$NEXT_PUBLIC_APP_URL" >> .env.production; fi
         - npm run build
   artifacts:
     baseDirectory: .next

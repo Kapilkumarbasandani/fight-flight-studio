@@ -55,7 +55,7 @@ export function Hero() {
           willChange: 'opacity, transform'
         }}
       >
-        <source src="/home2.mp4" type="video/mp4" />
+        <source src={`${process.env.NEXT_PUBLIC_ASSETS_URL || ''}/home2.mp4`} type="video/mp4" />
       </video>
 
       {/* Background Video 2 */}
@@ -75,7 +75,7 @@ export function Hero() {
           willChange: 'opacity, transform'
         }}
       >
-        <source src="/home.mp4" type="video/mp4" />
+        <source src={`${process.env.NEXT_PUBLIC_ASSETS_URL || ''}/home.mp4`} type="video/mp4" />
       </video>
 
       {/* Dark Gradient Overlays */}

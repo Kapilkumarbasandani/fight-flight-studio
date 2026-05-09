@@ -70,7 +70,7 @@ export function Offerings() {
           <div className="glass-card-intense p-6 md:p-12 border-l-4 border-neonGreen group hover:scale-[1.02] transition-all duration-700 slide-in-left cinematic-shadow">
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-8">
               <Image
-                src="/founder2.gif"
+                src={`${process.env.NEXT_PUBLIC_ASSETS_URL || ''}/founder2.gif`}
                 alt="Muay Thai"
                 width={100}
                 height={100}
@@ -109,7 +109,7 @@ export function Offerings() {
           <div className="glass-card-intense p-6 md:p-12 border-l-4 border-neonPink group hover:scale-[1.02] transition-all duration-700 slide-in-right cinematic-shadow">
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-8">
               <Image
-                src="/founder1.gif"
+                src={`${process.env.NEXT_PUBLIC_ASSETS_URL || ''}/founder1.gif`}
                 alt="Aerial Arts"
                 width={100}
                 height={100}
